@@ -1,6 +1,6 @@
 #load required packages
 require(ggplot2)
-require(GGally)
+require(GGally)   
 
 
 #create mean dataset for each foodweb constituent
