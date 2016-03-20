@@ -2,6 +2,7 @@
 require(ggplot2)
 require(GGally)
 
+
 #create mean dataset for each foodweb constituent
 LocBact <- summarySE(FoodWeb, 
                    measurevar="TotalBact", 
