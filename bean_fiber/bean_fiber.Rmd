@@ -1,0 +1,38 @@
+---
+title: "Bean Fiber"
+author: "skammlade"
+date: "31 May 2016"
+output: pdf_document
+---
+```{r echo=FALSE, message=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.stach <-summarySE(fiber, measurevar="Stach", groupvars=c("Entry","mktclass","race"))
+summ.stach <- data.frame(summ.stach)
+#summ.f <- summ.F[fiber$ftype=="Stach", ]
+f.stach <- subset(summ.stach, select=c(Entry, mktclass, race, Stach, sd, ci))
+newdata <- f.stach[order(-f.stach$Stach), ]
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+
+
+```{r fig.width = 8, fig.height=10, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE}
+source('boxplot.mktclass.R')
+plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
+```
+
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
