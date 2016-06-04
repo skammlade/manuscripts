@@ -1,18 +1,135 @@
 ---
-title: "Bean Fiber"
+title: Variation of dietary fiber content in 282 common bean genetoypes from the middle
+  american gene pool
 author: "skammlade"
 date: "31 May 2016"
-output: pdf_document
+output: html_document
 ---
-```{r echo=FALSE, message=FALSE}
+##### 282 entries from the BeanCAP study were grown in Fort Collins, CO in 2015 to determine variation in fiber content. All entries originated from the Middle American gene pool, and were further subdivided into the following races and market classes:
+
+
+| Market Class | # Entries |
+------------ | ----------
+pinto | 91
+navy | 45
+black | 41
+GN | 40
+small red | 60
+pink | 22
+carioca | 2
+tan | 2
+black mottle | 1
+flor de mayo | 1
+red mottle | 1
+
+
+```{r}
+summary(fiber[,7:14])
+```
+
+###### Tables below show 5 entries with the greatest and lowest values of each fiber component, including standard deviation, standard error and confindence intervals
+
+##### Insoluble Dietary Fiber (IDF)
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.IDF <-summarySE(fiber, measurevar="IDF", groupvars=c("Entry","mktclass","race"))
+summ.IDF <- data.frame(summ.IDF)
+#summ.f <- summ.F[fiber$ftype=="IDF", ]
+f.IDF <- subset(summ.IDF, select=c(Entry, mktclass, race, IDF, sd, se, ci))
+newdata <- f.IDF[order(-f.IDF$IDF), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Soluble Dietary Fiber (SDF)
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.SDF <-summarySE(fiber, measurevar="SDF", groupvars=c("Entry","mktclass","race"))
+summ.SDF <- data.frame(summ.SDF)
+#summ.f <- summ.F[fiber$ftype=="SDF", ]
+f.SDF <- subset(summ.SDF, select=c(Entry, mktclass, race, SDF, sd, se, ci))
+newdata <- f.SDF[order(-f.SDF$SDF), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Raffinose (Raff)
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.Raff <-summarySE(fiber, measurevar="Raff", groupvars=c("Entry","mktclass","race"))
+summ.Raff <- data.frame(summ.Raff)
+#summ.f <- summ.F[fiber$ftype=="Raff", ]
+f.Raff <- subset(summ.Raff, select=c(Entry, mktclass, race, Raff, sd, se, ci))
+newdata <- f.Raff[order(-f.Raff$Raff), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Stachyose (Stach)
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
 source('summarySE.R')
 summ.stach <-summarySE(fiber, measurevar="Stach", groupvars=c("Entry","mktclass","race"))
 summ.stach <- data.frame(summ.stach)
 #summ.f <- summ.F[fiber$ftype=="Stach", ]
-f.stach <- subset(summ.stach, select=c(Entry, mktclass, race, Stach, sd, ci))
+f.stach <- subset(summ.stach, select=c(Entry, mktclass, race, Stach, sd, se, ci))
 newdata <- f.stach[order(-f.stach$Stach), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Verbascose (Verb)
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.Verb <-summarySE(fiber, measurevar="Verb", groupvars=c("Entry","mktclass","race"))
+summ.Verb <- data.frame(summ.Verb)
+#summ.f <- summ.F[fiber$ftype=="Verb", ]
+f.Verb <- subset(summ.Verb, select=c(Entry, mktclass, race, Verb, sd, se, ci))
+newdata <- f.Verb[order(-f.Verb$Verb), ]
+newdata[,4:6] <- round(newdata[,4:7], 3)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Total Oligosachharides (TOligos) = Raff + Stach + Verb
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.TOligos <-summarySE(fiber, measurevar="TOligos", groupvars=c("Entry","mktclass","race"))
+summ.TOligos <- data.frame(summ.TOligos)
+#summ.f <- summ.F[fiber$ftype=="TOligos", ]
+f.TOligos <- subset(summ.TOligos, select=c(Entry, mktclass, race, TOligos, sd, se, ci))
+newdata <- f.TOligos[order(-f.TOligos$TOligos), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
+DT <- data.table(newdata)
+head(DT, 5)
+tail(DT,5)
+```
+##### Total Dietary Fiber (TDF) = IDF + SDF + Raff + Stach + Verb
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+fiber<- read.csv("fiber.csv")
+source('summarySE.R')
+summ.TDF <-summarySE(fiber, measurevar="TDF", groupvars=c("Entry","mktclass","race"))
+summ.TDF <- data.frame(summ.TDF)
+#summ.f <- summ.F[fiber$ftype=="TDF", ]
+f.TDF <- subset(summ.TDF, select=c(Entry, mktclass, race, TDF, sd, se, ci))
+newdata <- f.TDF[order(-f.TDF$TDF), ]
+newdata[,4:6] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
 head(DT, 5)
 tail(DT,5)
@@ -25,9 +142,7 @@ plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B
 ```
 
 
-```{r}
-summary(cars)
-```
+
 
 You can also embed plots, for example:
 
