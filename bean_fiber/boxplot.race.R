@@ -73,7 +73,7 @@ p.Raff.race <- p.Raff.race + theme(legend.position="none",
 p.Raff.race <- p.Raff.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
 
 #labels
-p.Raff.race <- p.Raff.race + labs(title="Raff")
+p.Raff.race <- p.Raff.race + labs(title="Raffinose")
 
 
 
@@ -98,7 +98,7 @@ p.Stach.race <- p.Stach.race + theme(legend.position="none",
 p.Stach.race <- p.Stach.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
 
 #labels
-p.Stach.race <- p.Stach.race + labs(title="Stach")
+p.Stach.race <- p.Stach.race + labs(title="Stachyose")
 
 
 
@@ -121,7 +121,7 @@ p.Verb.race <- p.Verb.race + theme(legend.position="none",
 p.Verb.race <- p.Verb.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
 
 #labels
-p.Verb.race <- p.Verb.race + labs(title="Verb")
+p.Verb.race <- p.Verb.race + labs(title="Verbascose")
 
 
 
@@ -144,7 +144,7 @@ p.TOligos.race <- p.TOligos.race + theme(legend.position="none",
 p.TOligos.race <- p.TOligos.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
 
 #labels
-p.TOligos.race <- p.TOligos.race + labs(title="Total Oligos")
+p.TOligos.race <- p.TOligos.race + labs(title="Total Oligosaccharides")
 
 
 

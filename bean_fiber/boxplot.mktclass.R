@@ -14,16 +14,15 @@ p.IDF.mkt <- ggplot(fiber,
 p.IDF.mkt <- p.IDF.mkt + geom_boxplot()
 
 p.IDF.mkt <- p.IDF.mkt + theme(legend.position="none",
-                                       plot.title = element_text(size=20),
-                                       axis.title.x = element_blank(),
-                                       axis.text.x = element_text(angle=60, hjust=1, 
-                                                                  vjust=1, 
-                                                                  size=15, 
-                                                                  face="bold"),
-                                       axis.title.y = element_blank())
+                               plot.title = element_text(size=15),
+                               axis.title.x = element_blank(),
+                               axis.text.x = element_text(angle=60, hjust=1, 
+                                                          vjust=1, 
+                                                          size=12),
+                               axis.title.y = element_blank())
 
 #add point at mean
-p.IDF.mkt <- p.IDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.IDF.mkt <- p.IDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.IDF.mkt <- p.IDF.mkt + labs(title="Insoluble DF")
@@ -37,16 +36,15 @@ p.SDF.mkt <- ggplot(fiber,
 p.SDF.mkt <- p.SDF.mkt + geom_boxplot()
 
 p.SDF.mkt <- p.SDF.mkt + theme(legend.position="none",
-                               plot.title = element_text(size=20),
+                               plot.title = element_text(size=15),
                                axis.title.x = element_blank(),
                                axis.text.x = element_text(angle=60, hjust=1, 
                                                           vjust=1, 
-                                                          size=15, 
-                                                          face="bold"),
+                                                          size=12),
                                axis.title.y = element_blank())
 
 #add point at mean
-p.SDF.mkt <- p.SDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.SDF.mkt <- p.SDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.SDF.mkt <- p.SDF.mkt + labs(title="Soluble DF")
@@ -61,19 +59,18 @@ p.Raff.mkt <- ggplot(fiber,
 p.Raff.mkt <- p.Raff.mkt + geom_boxplot()
 
 p.Raff.mkt <- p.Raff.mkt + theme(legend.position="none",
-                                 plot.title = element_text(size=20),
+                                 plot.title = element_text(size=15),
                                  axis.title.x = element_blank(),
                                  axis.text.x = element_text(angle=60, hjust=1, 
                                                             vjust=1, 
-                                                            size=15, 
-                                                            face="bold"),
+                                                            size=12),
                                  axis.title.y = element_blank())
 
 #add point at mean
-p.Raff.mkt <- p.Raff.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Raff.mkt <- p.Raff.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
-p.Raff.mkt <- p.Raff.mkt + labs(title="Raff")
+p.Raff.mkt <- p.Raff.mkt + labs(title="Raffinose")
 
 
 
@@ -86,19 +83,18 @@ p.Stach.mkt <- ggplot(fiber,
 p.Stach.mkt <- p.Stach.mkt + geom_boxplot()
 
 p.Stach.mkt <- p.Stach.mkt + theme(legend.position="none",
-                                   plot.title = element_text(size=20),
+                                   plot.title = element_text(size=15),
                                    axis.title.x = element_blank(),
                                    axis.text.x = element_text(angle=60, hjust=1, 
                                                               vjust=1, 
-                                                              size=15, 
-                                                              face="bold"),
+                                                              size=12),
                                    axis.title.y = element_blank())
 
 #add point at mean
-p.Stach.mkt <- p.Stach.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Stach.mkt <- p.Stach.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
-p.Stach.mkt <- p.Stach.mkt + labs(title="Stach")
+p.Stach.mkt <- p.Stach.mkt + labs(title="Stachyose")
 
 
 
@@ -109,19 +105,18 @@ p.Verb.mkt <- ggplot(fiber,
 p.Verb.mkt <- p.Verb.mkt + geom_boxplot()
 
 p.Verb.mkt <- p.Verb.mkt + theme(legend.position="none",
-                                 plot.title = element_text(size=20),
+                                 plot.title = element_text(size=15),
                                  axis.title.x = element_blank(),
                                  axis.text.x = element_text(angle=60, hjust=1, 
                                                             vjust=1, 
-                                                            size=15, 
-                                                            face="bold"),
+                                                            size=12),
                                  axis.title.y = element_blank())
 
 #add point at mean
-p.Verb.mkt <- p.Verb.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Verb.mkt <- p.Verb.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
-p.Verb.mkt <- p.Verb.mkt + labs(title="Verb")
+p.Verb.mkt <- p.Verb.mkt + labs(title="Verbascose")
 
 
 
@@ -132,19 +127,18 @@ p.TOligos.mkt <- ggplot(fiber,
 p.TOligos.mkt <- p.TOligos.mkt + geom_boxplot()
 
 p.TOligos.mkt <- p.TOligos.mkt + theme(legend.position="none",
-                                       plot.title = element_text(size=20),
+                                       plot.title = element_text(size=15),
                                        axis.title.x = element_blank(),
                                        axis.text.x = element_text(angle=60, hjust=1, 
                                                                   vjust=1, 
-                                                                  size=15, 
-                                                                  face="bold"),
+                                                                  size=12),
                                        axis.title.y = element_blank())
 
 #add point at mean
-p.TOligos.mkt <- p.TOligos.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.TOligos.mkt <- p.TOligos.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
-p.TOligos.mkt <- p.TOligos.mkt + labs(title="Total Oligos")
+p.TOligos.mkt <- p.TOligos.mkt + labs(title="Total Oligosaccharides")
 
 
 
@@ -156,16 +150,15 @@ p.TDF.mkt <- ggplot(fiber,
 p.TDF.mkt <- p.TDF.mkt + geom_boxplot()
 
 p.TDF.mkt <- p.TDF.mkt + theme(legend.position="none",
-                               plot.title = element_text(size=20),
+                               plot.title = element_text(size=15),
                                axis.title.x = element_blank(),
                                axis.text.x = element_text(angle=60, hjust=1, 
                                                           vjust=1, 
-                                                          size=15, 
-                                                          face="bold"),
+                                                          size=12),
                                axis.title.y = element_blank())
 
 #add point at mean
-p.TDF.mkt <- p.TDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.TDF.mkt <- p.TDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.TDF.mkt <- p.TDF.mkt + labs(title="Total Dietary Fiber")

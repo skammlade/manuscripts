@@ -5,17 +5,21 @@ author: "skammlade"
 date: "31 May 2016"
 output:
   pdf_document:
+    latex_engine: xelatex    
     fig_caption: yes
     toc: yes
     toc_depth: 2
-    latex_engine: xelatex
     includes:
       in_header: preamble_fig_env.tex
   html_document:
     toc: yes
 graphics: yes
 fontsize: 12pt
+sansfont: Calibri Light  
 ---
+
+\DeclareFixedFont{\sffamily}{0T1}{cmss}{m}{n}{12}
+
 ## Introduction
 
 `r nrow(fiber)/2` entries from the BeanCAP study were grown in Fort Collins, CO in 2015 to determine variation in fiber content. All entries originated from the Middle American gene pool and were further subdivided into the following races and market classes: 
@@ -172,7 +176,7 @@ black | `r mean(fiber.one$mktclass=="black" & fiber.one$ftype=="IDF", na.rm=TRUE
 ##   -   Boxplots
 Figures below depict fiber content by market class. 
 
-```{r fig.width = 8, fig.height=10, fig.align='center', echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
+```{r fig.width = 8, fig.height=8, fig.align='center', echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by Marketclass: Oligosaccharides
 source('boxplot.mktclass.R')
 plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
@@ -184,10 +188,10 @@ source('boxplot.mktclass.R')
 plot_grid(p.IDF.mkt, p.SDF.mkt, labels = c("A", "B"), ncol = 2)
 ```
 
-```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by marketclass"}
+```{r fig.width = 4, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by marketclass"}
 ##Boxplots by Marketclass: Total Dietary Fiber
 source('boxplot.mktclass.R')
-plot_grid(p.TDF.mkt, ncol = 2)
+p.TDF.mkt
 ```
 
 
@@ -227,10 +231,10 @@ source('boxplot.race.R')
 plot_grid(p.IDF.race, p.SDF.race, labels = c("A", "B"), ncol = 2)
 ```
 
-```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by race"}
+```{r fig.width = 2, fig.height=3, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by race"}
 ##Boxplots by race: Total Dietary Fiber
 source('boxplot.race.R')
-plot_grid(p.TDF.race, ncol = 2)
+p.TDF.race
 ```
 
 
