@@ -25,3 +25,7 @@ TukeyHSD(OneWayFit)
 
 OneWayFit <- aov(TDF~mktclass, data=fiber)
 TukeyHSD(OneWayFit)
+library(multcomp)
+PairComps <- glht(OneWayFit, linfct=mcp(mktclass="Tukey"))
+summary(PairComps)
+cld(PairComps)

@@ -14,16 +14,15 @@ p.IDF.race <- ggplot(fiber,
 p.IDF.race <- p.IDF.race + geom_boxplot()
 
 p.IDF.race <- p.IDF.race + theme(legend.position="none",
-                               plot.title = element_text(size=20),
-                               axis.title.x = element_blank(),
-                               axis.text.x = element_text(angle=60, hjust=1, 
-                                                          vjust=1, 
-                                                          size=15, 
-                                                          face="bold"),
-                               axis.title.y = element_blank())
+                                 plot.title = element_text(size=15),
+                                 axis.title.x = element_blank(),
+                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                                            vjust=1, 
+                                                            size=12),
+                                 axis.title.y = element_blank())
 
 #add point at mean
-p.IDF.race <- p.IDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.IDF.race <- p.IDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.IDF.race <- p.IDF.race + labs(title="Insoluble DF")
@@ -37,16 +36,15 @@ p.SDF.race <- ggplot(fiber,
 p.SDF.race <- p.SDF.race + geom_boxplot()
 
 p.SDF.race <- p.SDF.race + theme(legend.position="none",
-                               plot.title = element_text(size=20),
-                               axis.title.x = element_blank(),
-                               axis.text.x = element_text(angle=60, hjust=1, 
-                                                          vjust=1, 
-                                                          size=15, 
-                                                          face="bold"),
-                               axis.title.y = element_blank())
+                                 plot.title = element_text(size=15),
+                                 axis.title.x = element_blank(),
+                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                                            vjust=1, 
+                                                            size=12),
+                                 axis.title.y = element_blank())
 
 #add point at mean
-p.SDF.race <- p.SDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.SDF.race <- p.SDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.SDF.race <- p.SDF.race + labs(title="Soluble DF")
@@ -61,16 +59,15 @@ p.Raff.race <- ggplot(fiber,
 p.Raff.race <- p.Raff.race + geom_boxplot()
 
 p.Raff.race <- p.Raff.race + theme(legend.position="none",
-                                 plot.title = element_text(size=20),
-                                 axis.title.x = element_blank(),
-                                 axis.text.x = element_text(angle=60, hjust=1, 
-                                                            vjust=1, 
-                                                            size=15, 
-                                                            face="bold"),
-                                 axis.title.y = element_blank())
+                                   plot.title = element_text(size=15),
+                                   axis.title.x = element_blank(),
+                                   axis.text.x = element_text(angle=60, hjust=1, 
+                                                              vjust=1, 
+                                                              size=12),
+                                   axis.title.y = element_blank())
 
 #add point at mean
-p.Raff.race <- p.Raff.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Raff.race <- p.Raff.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.Raff.race <- p.Raff.race + labs(title="Raffinose")
@@ -86,16 +83,15 @@ p.Stach.race <- ggplot(fiber,
 p.Stach.race <- p.Stach.race + geom_boxplot()
 
 p.Stach.race <- p.Stach.race + theme(legend.position="none",
-                                   plot.title = element_text(size=20),
-                                   axis.title.x = element_blank(),
-                                   axis.text.x = element_text(angle=60, hjust=1, 
-                                                              vjust=1, 
-                                                              size=15, 
-                                                              face="bold"),
-                                   axis.title.y = element_blank())
+                                     plot.title = element_text(size=15),
+                                     axis.title.x = element_blank(),
+                                     axis.text.x = element_text(angle=60, hjust=1, 
+                                                                vjust=1, 
+                                                                size=12),
+                                     axis.title.y = element_blank())
 
 #add point at mean
-p.Stach.race <- p.Stach.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Stach.race <- p.Stach.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.Stach.race <- p.Stach.race + labs(title="Stachyose")
@@ -109,16 +105,15 @@ p.Verb.race <- ggplot(fiber,
 p.Verb.race <- p.Verb.race + geom_boxplot()
 
 p.Verb.race <- p.Verb.race + theme(legend.position="none",
-                                 plot.title = element_text(size=20),
-                                 axis.title.x = element_blank(),
-                                 axis.text.x = element_text(angle=60, hjust=1, 
-                                                            vjust=1, 
-                                                            size=15, 
-                                                            face="bold"),
-                                 axis.title.y = element_blank())
+                                   plot.title = element_text(size=15),
+                                   axis.title.x = element_blank(),
+                                   axis.text.x = element_text(angle=60, hjust=1, 
+                                                              vjust=1, 
+                                                              size=12),
+                                   axis.title.y = element_blank())
 
 #add point at mean
-p.Verb.race <- p.Verb.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.Verb.race <- p.Verb.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.Verb.race <- p.Verb.race + labs(title="Verbascose")
@@ -132,16 +127,15 @@ p.TOligos.race <- ggplot(fiber,
 p.TOligos.race <- p.TOligos.race + geom_boxplot()
 
 p.TOligos.race <- p.TOligos.race + theme(legend.position="none",
-                                       plot.title = element_text(size=20),
-                                       axis.title.x = element_blank(),
-                                       axis.text.x = element_text(angle=60, hjust=1, 
-                                                                  vjust=1, 
-                                                                  size=15, 
-                                                                  face="bold"),
-                                       axis.title.y = element_blank())
+                                         plot.title = element_text(size=15),
+                                         axis.title.x = element_blank(),
+                                         axis.text.x = element_text(angle=60, hjust=1, 
+                                                                    vjust=1, 
+                                                                    size=12),
+                                         axis.title.y = element_blank())
 
 #add point at mean
-p.TOligos.race <- p.TOligos.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.TOligos.race <- p.TOligos.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.TOligos.race <- p.TOligos.race + labs(title="Total Oligosaccharides")
@@ -156,16 +150,15 @@ p.TDF.race <- ggplot(fiber,
 p.TDF.race <- p.TDF.race + geom_boxplot()
 
 p.TDF.race <- p.TDF.race + theme(legend.position="none",
-                               plot.title = element_text(size=20),
-                               axis.title.x = element_blank(),
-                               axis.text.x = element_text(angle=60, hjust=1, 
-                                                          vjust=1, 
-                                                          size=15, 
-                                                          face="bold"),
-                               axis.title.y = element_blank())
+                                 plot.title = element_text(size=15),
+                                 axis.title.x = element_blank(),
+                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                                            vjust=1, 
+                                                            size=12),
+                                 axis.title.y = element_blank())
 
 #add point at mean
-p.TDF.race <- p.TDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 3, fill= "white")
+p.TDF.race <- p.TDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
 p.TDF.race <- p.TDF.race + labs(title="Total Dietary Fiber")

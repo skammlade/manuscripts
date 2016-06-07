@@ -42,3 +42,4 @@ fiber<- read.csv("fiber.csv")
 OneWayFit <- aov(TDF~mktclass, data=fiber)
 summary(OneWayFit)
 ```
+
