@@ -169,19 +169,34 @@ library(data.table)
 fiber.one<- read.csv("fiber_facet.csv")
 ```
 
-| mktclass | IDF | 
----------|--------
-black | `r mean(fiber.one$mktclass=="black" & fiber.one$ftype=="IDF", na.rm=TRUE)`a
-
 
 ##   -   Boxplots
 Figures below depict fiber content by market class. 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source('subset.race.R')
+```
 
-```{r fig.width = 8, fig.height=8, fig.align='center', echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
+
+```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by Marketclass: Oligosaccharides
 source('boxplot.mktclass.R')
 plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
 ```
+
+| Race | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
+---------|--------|--------|---------|---------|
+black | `r round(mean(verb.black$value),3)` a | `r round(mean(raff.black$value),3)` c | `r round(mean(stach.black$value),2)` b | `r round(mean(toligos.black$value),2)` bc |
+black mottle | `r round(mean(verb.blackmottle$value),3)` ab | `r round(mean(raff.blackmottle$value),3)` bc | `r round(mean(stach.blackmottle$value),2)` ab | `r round(mean(toligos.blackmottle$value),2)` ab |
+carioca | `r round(mean(verb.carioca$value),3)` ab | `r round(mean(raff.carioca$value),3)` bc | `r round(mean(stach.carioca$value),2)` ab | `r round(mean(toligos.carioca$value),2)` abc |
+flor de mayo | `r round(mean(verb.flordemayo$value),3)` abd | `r round(mean(raff.flordemayo$value),3)` bc | `r round(mean(stach.flordemayo$value),2)` ab | `r round(mean(toligos.flordemayo$value),2)` abc |
+GN | `r round(mean(verb.GN$value),3)` b | `r round(mean(raff.GN$value),3)` ac | `r round(mean(stach.GN$value),2)` b | `r round(mean(toligos.GN$value),2)` bc |
+navy | `r round(mean(verb.navy$value),3)` ac | `r round(mean(raff.navy$value),3)` ac | `r round(mean(stach.navy$value),2)` a | `r round(mean(toligos.navy$value),2)` a |
+pink | `r round(mean(verb.pink$value),3)` bc | `r round(mean(raff.pink$value),3)` b | `r round(mean(stach.pink$value),2)` ab | `r round(mean(toligos.pink$value),2)` ab |
+pinto | `r round(mean(verb.pinto$value),3)` b | `r round(mean(raff.pinto$value),3)` b | `r round(mean(stach.pinto$value),2)` b | `r round(mean(toligos.pinto$value),2)` b |
+red mottle | `r round(mean(verb.redmottle$value),3)` d | `r round(mean(raff.redmottle$value),3)` ab | `r round(mean(stach.redmottle$value),2)` c | `r round(mean(toligos.redmottle$value),2)` c |
+small red | `r round(mean(verb.smallred$value),3)` b | `r round(mean(raff.smallred$value),3)` ab | `r round(mean(stach.smallred$value),2)` b | `r round(mean(toligos.smallred$value),2)` bc |
+small white | `r round(mean(verb.smallwhite$value),3)` ab | `r round(mean(raff.smallwhite$value),3)` bc | `r round(mean(stach.smallwhite$value),2)` ab | `r round(mean(toligos.smallwhite$value),2)` abc |
+tan | `r round(mean(verb.tan$value),3)` ab | `r round(mean(raff.tan$value),3)` bc | `r round(mean(stach.tan$value),2)` ab | `r round(mean(toligos.tan$value),2)` ab |
 
 ```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in 282 common bean genotypes by marketclass,"}
 ##Boxplots by Marketclass: Soluble and Insoluble DF
@@ -189,46 +204,46 @@ source('boxplot.mktclass.R')
 plot_grid(p.IDF.mkt, p.SDF.mkt, labels = c("A", "B"), ncol = 2)
 ```
 
+| Race | Insoluble DF | Soluble DF
+---------|--------|--------
+black | `r round(mean(idf.black$value),3)` cd | `r round(mean(sdf.black$value),3)` b 
+black mottle | `r round(mean(idf.blackmottle$value),3)` abc | `r round(mean(sdf.blackmottle$value),3)` ab 
+carioca | `r round(mean(idf.carioca$value),3)` abc | `r round(mean(sdf.carioca$value),3)` ab
+flor de mayo | `r round(mean(idf.flordemayo$value),3)` abc | `r round(mean(sdf.flordemayo$value),3)` ab
+GN | `r round(mean(idf.GN$value),3)` ab | `r round(mean(sdf.GN$value),3)` ab 
+navy | `r round(mean(idf.navy$value),3)` a | `r round(mean(sdf.navy$value),3)` ab 
+pink | `r round(mean(idf.pink$value),3)` abc | `r round(mean(sdf.pink$value),3)` a 
+pinto | `r round(mean(idf.pinto$value),3)` bd | `r round(mean(sdf.pinto$value),3)` b 
+red mottle | `r round(mean(idf.redmottle$value),3)` abc | `r round(mean(sdf.redmottle$value),3)` ab 
+small red | `r round(mean(idf.smallred$value),3)` c | `r round(mean(sdf.smallred$value),3)` ab 
+small white | `r round(mean(idf.smallwhite$value),3)` abc | `r round(mean(sdf.smallwhite$value),3)` ab 
+tan | `r round(mean(idf.tan$value),3)` abc | `r round(mean(sdf.tan$value),3)` ab 
+
 ```{r fig.width = 4, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by marketclass"}
 ##Boxplots by Marketclass: Total Dietary Fiber
 source('boxplot.mktclass.R')
 p.TDF.mkt
 ```
 
-
+| Race | Total DF 
+---------|--------
+black | `r round(mean(tdf.black$value),3)` bc 
+black mottle | `r round(mean(tdf.blackmottle$value),3)` abc 
+carioca | `r round(mean(tdf.carioca$value),3)` abc 
+flor de mayo | `r round(mean(tdf.flordemayo$value),3)` abc
+GN | `r round(mean(tdf.GN$value),3)` cd 
+navy | `r round(mean(tdf.navy$value),3)` a 
+pink | `r round(mean(tdf.pink$value),3)` bd 
+pinto | `r round(mean(tdf.pinto$value),3)` ac 
+red mottle | `r round(mean(tdf.redmottle$value),3)` bc 
+small red | `r round(mean(tdf.smallred$value),3)` b 
+small white | `r round(mean(tdf.smallwhite$value),3)` abc 
+tan | `r round(mean(tdf.tan$value),3)` abc 
 
 ## Results: Race
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(data.table)
-fiber.one<- read.csv("fiber_facet.csv")
-idf.durango <- subset(fiber.one, ftype=="IDF" & race=="durango")
-idf.jalisco <- subset(fiber.one, ftype=="IDF" & race=="jalisco")
-idf.meso <- subset(fiber.one, ftype=="IDF" & race=="mesoamerican")
-
-sdf.durango <- subset(fiber.one, ftype=="SDF" & race=="durango")
-sdf.jalisco <- subset(fiber.one, ftype=="SDF" & race=="jalisco")
-sdf.meso <- subset(fiber.one, ftype=="SDF" & race=="mesoamerican")
-
-raff.durango <- subset(fiber.one, ftype=="Raff" & race=="durango")
-raff.jalisco <- subset(fiber.one, ftype=="Raff" & race=="jalisco")
-raff.meso <- subset(fiber.one, ftype=="Raff" & race=="mesoamerican")
-
-stach.durango <- subset(fiber.one, ftype=="Stach" & race=="durango")
-stach.jalisco <- subset(fiber.one, ftype=="Stach" & race=="jalisco")
-stach.meso <- subset(fiber.one, ftype=="Stach" & race=="mesoamerican")
-
-verb.durango <- subset(fiber.one, ftype=="Verb" & race=="durango")
-verb.jalisco <- subset(fiber.one, ftype=="Verb" & race=="jalisco")
-verb.meso <- subset(fiber.one, ftype=="Verb" & race=="mesoamerican")
-
-toligos.durango <- subset(fiber.one, ftype=="TOligos" & race=="durango")
-toligos.jalisco <- subset(fiber.one, ftype=="TOligos" & race=="jalisco")
-toligos.meso <- subset(fiber.one, ftype=="TOligos" & race=="mesoamerican")
-
-tdf.durango <- subset(fiber.one, ftype=="TDF" & race=="durango")
-tdf.jalisco <- subset(fiber.one, ftype=="TDF" & race=="jalisco")
-tdf.meso <- subset(fiber.one, ftype=="TDF" & race=="mesoamerican")
+source('subset.race_real.R')
 ```
 
 ##   -   Boxplots
@@ -237,7 +252,7 @@ Figures below depict fiber content by race.
 ```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by race (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by race: Oligosaccharides
 source('boxplot.race.R')
-plot_grid(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2, align="h")
+plot_grid(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2, align="w")
 ```
 
 | Race | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
@@ -246,10 +261,10 @@ Durango | `r round(mean(verb.durango$value),3)` b | `r round(mean(raff.durango$v
 Jalisco | `r round(mean(verb.jalisco$value),3)` b | `r round(mean(raff.jalisco$value),3)` a | `r round(mean(stach.jalisco$value),2)` ab | `r round(mean(toligos.jalisco$value),2)` a |
 Mesoamerican | `r round(mean(verb.meso$value),3)` a | `r round(mean(raff.meso$value),3)` b | `r round(mean(stach.meso$value),2)` a | `r round(mean(toligos.meso$value),2)` a |
 
-```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in 282 common bean genotypes by race,"}
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in 282 common bean genotypes by race,"}
 ##Boxplots by race: Soluble and Insoluble DF
 source('boxplot.race.R')
-plot_grid(p.IDF.race, p.SDF.race, labels = c("A", "B"), ncol = 2, align="h")
+plot_grid(p.IDF.race, p.SDF.race, labels = c("A", "B"), ncol = 2, align="w")
 ```
 
 | Race | Insoluble DF | Soluble DF | 
@@ -258,7 +273,7 @@ Durango | `r round(mean(idf.durango$value),3)` a | `r round(mean(sdf.durango$val
 Jalisco | `r round(mean(idf.jalisco$value),3)` b | `r round(mean(sdf.jalisco$value),3)` b | 
 Mesoamerican | `r round(mean(idf.meso$value),3)` a | `r round(mean(sdf.meso$value),3)` a |
 
-```{r fig.width = 4, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by race"}
+```{r fig.width = 4, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by race"}
 ##Boxplots by race: Total Dietary Fiber
 source('boxplot.race.R')
 p.TDF.race

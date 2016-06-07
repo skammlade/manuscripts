@@ -13,54 +13,52 @@ small red | `r mean(fiber.one$mktclass=="smallred" & fiber.one$ftype=="IDF", na.
 small white | `r mean(fiber.one$mktclass=="smallwhite" & fiber.one$ftype=="IDF", na.rm=TRUE)`
 tan | `r mean(fiber.one$mktclass=="tan" & fiber.one$ftype=="IDF", na.rm=TRUE)`
 
-library(data.table)
-fiber.one<- read.csv("fiber_facet.csv")
-f.idf <- data.frame(fiber.one[which(fiber.one$ftype=="IDF" & fiber.one$race=="durango") ,])
-mean(fiber.one[fiber.one$ftype=="TDF" & fiber.one$race=="durango"])
-
-round(mean(f.idf),2)
-
-f.sdf <- fiber.one[which(fiber.one$ftype=="SDF") ,]
-round(mean(f.sdf$race=="durango", na.rm=TRUE),2)
-
-attach(fiber.one)
-aggdata <- aggregate(fiber.one, by=list(ftype, race), FUN=mean, na.rm=TRUE)
 
 
-attach(mtcars)
-aggdata <-aggregate(mtcars, by=list(cyl,vs), 
-                    FUN=mean, na.rm=TRUE)
-print(aggdata(where[Group.1=="IDF" & Group.2=="durango"], ))
 
-library(data.table)
-fiber.one<- read.csv("fiber_facet.csv")
 
-idf.durango <- subset(fiber.one, ftype=="IDF" & race=="durango")
-idf.jalisco <- subset(fiber.one, ftype=="IDF" & race=="jalisco")
-idf.meso <- subset(fiber.one, ftype=="IDF" & race=="mesoamerican")
 
-sdf.durango <- subset(fiber.one, ftype=="SDF" & race=="durango")
-sdf.jalisco <- subset(fiber.one, ftype=="SDF" & race=="jalisco")
-sdf.meso <- subset(fiber.one, ftype=="SDF" & race=="mesoamerican")
+library(gridExtra)
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+#store legend image from p.stach
+legend <- get_legend(p.Stach.race)
+#remove legend from p.stach
+p.Stach.race <- p.Stach.race + theme(legend.position="none")
+grid.arrange(p.Stach.race, p.TOligos.race, legend, 
+             ncol=2, 
+             nrow = 2, 
+             layout_matrix = rbind(c(1,2), c(3,3)),
+             widths = c(2.7, 2.7), heights = c(2.5, 0.2))
 
-raff.durango <- subset(fiber.one, ftype=="Raff" & race=="durango")
-raff.jalisco <- subset(fiber.one, ftype=="Raff" & race=="jalisco")
-raff.meso <- subset(fiber.one, ftype=="Raff" & race=="mesoamerican")
+grid.arrange(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, legend, ncol=2, nrow = 3,
+             layout_matrix = rbind(c(1,2,3,4), c(5,5)),
+             widths = c(2.7, 2.7), heights = c(2.5, 2.5, 0.2))
 
-stach.durango <- subset(fiber.one, ftype=="Stach" & race=="durango")
-stach.jalisco <- subset(fiber.one, ftype=="Stach" & race=="jalisco")
-stach.meso <- subset(fiber.one, ftype=="Stach" & race=="mesoamerican")
+#multiple plots
+plot_grid(p.Stach.race, p.TOligos.race, legend, 
+          labels = c("A", "B"), ncol = 2, nrow=3, heights=c(2.5,0.5)) 
+#layout_matrix = rbind(c(1,2), c(3,3)),
+#widths = c(2.7, 2.7), 
+#heights = c(2.5, 0.2))
 
-verb.durango <- subset(fiber.one, ftype=="Verb" & race=="durango")
-verb.jalisco <- subset(fiber.one, ftype=="Verb" & race=="jalisco")
-verb.meso <- subset(fiber.one, ftype=="Verb" & race=="mesoamerican")
 
-toligos.durango <- subset(fiber.one, ftype=="TOligos" & race=="durango")
-toligos.jalisco <- subset(fiber.one, ftype=="TOligos" & race=="jalisco")
-toligos.meso <- subset(fiber.one, ftype=="TOligos" & race=="mesoamerican")
+library(gridExtra)
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
 
-tdf.durango <- subset(fiber.one, ftype=="TDF" & race=="durango")
-tdf.jalisco <- subset(fiber.one, ftype=="TDF" & race=="jalisco")
-tdf.meso <- subset(fiber.one, ftype=="TDF" & race=="mesoamerican")
-
-mean
+legend <- get_legend(p.IDF.race)
+p.IDF.race <- p.IDF.race + theme(legend.position="none")
+grid.arrange(p.IDF.race, p.SDF.race, legend, 
+             ncol=2, 
+             nrow = 2, 
+             layout_matrix = rbind(c(1,2), c(3,3)),
+             widths = c(4, 4), heights = c(4.5, 0.5))

@@ -14,9 +14,10 @@ p.IDF.race <- ggplot(fiber,
 p.IDF.race <- p.IDF.race + geom_boxplot()
 
 p.IDF.race <- p.IDF.race + theme(legend.position="none",
+                                 legend.title=element_blank(),
                                  plot.title = element_text(size=15),
                                  axis.title.x = element_blank(),
-                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                 axis.text.x = element_text(angle=0, hjust=0.5, 
                                                             vjust=1, 
                                                             size=12),
                                  axis.title.y = element_blank())
@@ -38,7 +39,7 @@ p.SDF.race <- p.SDF.race + geom_boxplot()
 p.SDF.race <- p.SDF.race + theme(legend.position="none",
                                  plot.title = element_text(size=15),
                                  axis.title.x = element_blank(),
-                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                 axis.text.x = element_text(angle=00, hjust=0.5, 
                                                             vjust=1, 
                                                             size=12),
                                  axis.title.y = element_blank())
@@ -61,7 +62,7 @@ p.Raff.race <- p.Raff.race + geom_boxplot()
 p.Raff.race <- p.Raff.race + theme(legend.position="none",
                                    plot.title = element_text(size=15),
                                    axis.title.x = element_blank(),
-                                   axis.text.x = element_text(angle=60, hjust=1, 
+                                   axis.text.x = element_text(angle=0, hjust=0.5, 
                                                               vjust=1, 
                                                               size=12),
                                    axis.title.y = element_blank())
@@ -83,9 +84,10 @@ p.Stach.race <- ggplot(fiber,
 p.Stach.race <- p.Stach.race + geom_boxplot()
 
 p.Stach.race <- p.Stach.race + theme(legend.position="none",
+                                     legend.title=element_blank(),
                                      plot.title = element_text(size=15),
                                      axis.title.x = element_blank(),
-                                     axis.text.x = element_text(angle=60, hjust=1, 
+                                     axis.text.x = element_text(angle=0, hjust=0.5, 
                                                                 vjust=1, 
                                                                 size=12),
                                      axis.title.y = element_blank())
@@ -107,7 +109,7 @@ p.Verb.race <- p.Verb.race + geom_boxplot()
 p.Verb.race <- p.Verb.race + theme(legend.position="none",
                                    plot.title = element_text(size=15),
                                    axis.title.x = element_blank(),
-                                   axis.text.x = element_text(angle=60, hjust=1, 
+                                   axis.text.x = element_text(angle=0, hjust=0.5, 
                                                               vjust=1, 
                                                               size=12),
                                    axis.title.y = element_blank())
@@ -129,7 +131,7 @@ p.TOligos.race <- p.TOligos.race + geom_boxplot()
 p.TOligos.race <- p.TOligos.race + theme(legend.position="none",
                                          plot.title = element_text(size=15),
                                          axis.title.x = element_blank(),
-                                         axis.text.x = element_text(angle=60, hjust=1, 
+                                         axis.text.x = element_text(angle=0, hjust=0.5, 
                                                                     vjust=1, 
                                                                     size=12),
                                          axis.title.y = element_blank())
@@ -150,9 +152,10 @@ p.TDF.race <- ggplot(fiber,
 p.TDF.race <- p.TDF.race + geom_boxplot()
 
 p.TDF.race <- p.TDF.race + theme(legend.position="none",
+                                 legend.title=element_blank(),
                                  plot.title = element_text(size=15),
                                  axis.title.x = element_blank(),
-                                 axis.text.x = element_text(angle=60, hjust=1, 
+                                 axis.text.x = element_text(angle=0, hjust=0.5, 
                                                             vjust=1, 
                                                             size=12),
                                  axis.title.y = element_blank())
@@ -163,5 +166,3 @@ p.TDF.race <- p.TDF.race + stat_summary(fun.y = "mean", geom = "point", shape= 2
 #labels
 p.TDF.race <- p.TDF.race + labs(title="Total Dietary Fiber")
 
-#multiple plots
-plot_grid(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2)
