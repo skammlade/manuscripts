@@ -1,0 +1,345 @@
+\documentclass[12pt,]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\ScaleIfNeeded{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+{%
+ \catcode`\@=11\relax%
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+}%
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={skammlade},
+            pdftitle={Variation of dietary fiber content in 282 common bean genotypes from the middle american gene pool},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\setlength{\droptitle}{-2em}
+  \title{Variation of dietary fiber content in 282 common bean genotypes from the
+middle american gene pool}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{skammlade}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{31 May 2016}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Introduction}\label{introduction}
+
+282 entries from the BeanCAP study were grown in Fort Collins, CO in
+2015 to determine variation in fiber content. All entries originated
+from the Middle American gene pool and were further subdivided into the
+following races and market classes:
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule\addlinespace
+Race & \# Entries
+\\\addlinespace
+\midrule\endhead
+Durango & 131
+\\\addlinespace
+Jalisco & 55
+\\\addlinespace
+Mesoamerican & 0
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule\addlinespace
+Market Class & \# Entries
+\\\addlinespace
+\midrule\endhead
+pinto & 91
+\\\addlinespace
+navy & 45
+\\\addlinespace
+black & 41
+\\\addlinespace
+GN & 40
+\\\addlinespace
+small red & 30
+\\\addlinespace
+pink & 22
+\\\addlinespace
+carioca & 2
+\\\addlinespace
+tan & 2
+\\\addlinespace
+black mottle & 1
+\\\addlinespace
+flor de mayo & 1
+\\\addlinespace
+red mottle & 1
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+\subsection{Summary Statistics}\label{summary-statistics}
+
+Below are summary statistics for all dietary fiber components for all
+entries.
+
+\begin{verbatim}
+##       IDF             SDF            IDF_SDF           Raff       
+##  Min.   :11.30   Min.   : 4.000   Min.   :17.90   Min.   :0.2000  
+##  1st Qu.:13.40   1st Qu.: 7.000   1st Qu.:21.10   1st Qu.:0.4000  
+##  Median :14.00   Median : 7.600   Median :21.80   Median :0.4000  
+##  Mean   :14.14   Mean   : 7.648   Mean   :21.79   Mean   :0.4504  
+##  3rd Qu.:14.80   3rd Qu.: 8.300   3rd Qu.:22.60   3rd Qu.:0.5000  
+##  Max.   :18.90   Max.   :10.400   Max.   :25.80   Max.   :1.0000  
+##      Stach            Verb           TOligos           TDF       
+##  Min.   :2.800   Min.   :0.0000   Min.   :3.400   Min.   :22.30  
+##  1st Qu.:3.600   1st Qu.:0.1000   1st Qu.:4.100   1st Qu.:25.40  
+##  Median :3.800   Median :0.1000   Median :4.400   Median :26.20  
+##  Mean   :3.847   Mean   :0.1002   Mean   :4.396   Mean   :26.19  
+##  3rd Qu.:4.100   3rd Qu.:0.1000   3rd Qu.:4.700   3rd Qu.:27.00  
+##  Max.   :6.500   Max.   :0.3000   Max.   :7.500   Max.   :31.10
+\end{verbatim}
+
+\subsection{Results: Marketclass}\label{results-marketclass}
+
+Tables below show the five entries with the greatest and five entries
+with the lowest values of each fiber component averaged across the two
+replications including standard deviation (sd), standard error (se) and
+confindence intervals (ci).
+
+\subparagraph{Insoluble Dietary Fiber
+(IDF)}\label{insoluble-dietary-fiber-idf}
+
+\begin{verbatim}
+##           Entry  mktclass         race   IDF   sd   se    ci
+## 1:   PR0443-151     black mesoamerican 16.91 1.55 1.09 13.89
+## 2: CDC Pinnacle     pinto      durango 16.73 2.76 1.95 24.80
+## 3:      CDC Jet     black mesoamerican 16.71 1.32 0.94 11.90
+## 4:  TARS-VCI-4B     pinto      durango 16.46 3.43 2.42 30.79
+## 5: TARS09-RR007 small red      jalisco 16.42 0.51 0.36  4.59
+\end{verbatim}
+
+\begin{verbatim}
+##             Entry mktclass         race   IDF   sd   se   ci
+## 1: BelMiNeb-RMR-4     navy mesoamerican 12.34 0.11 0.08 0.97
+## 2: BelMiNeb-RMR-8     navy mesoamerican 12.05 0.38 0.27 3.43
+## 3: BelMiNeb-RMR-7     navy mesoamerican 11.77 0.31 0.22 2.77
+## 4: BelMiNeb-RMR-3       GN      durango 11.75 0.22 0.15 1.97
+## 5:     AC Pintoba    pinto      durango 11.44 0.19 0.13 1.70
+\end{verbatim}
+
+\subparagraph{Soluble Dietary Fiber
+(SDF)}\label{soluble-dietary-fiber-sdf}
+
+\begin{verbatim}
+##         Entry  mktclass         race   SDF   sd   se   ci
+## 1:    Voyager      navy mesoamerican 10.29 0.12 0.08 1.03
+## 2:      SR7-3 small red      jalisco  9.83 0.83 0.59 7.48
+## 3:      NW-63 small red      jalisco  9.81 0.43 0.30 3.84
+## 4:     IP08-2     pinto      durango  9.48 0.76 0.53 6.79
+## 5: BelMiNeb 2        GN      durango  9.45 0.05 0.03 0.42
+\end{verbatim}
+
+\begin{verbatim}
+##          Entry  mktclass    race  SDF   sd   se    ci
+## 1:     ABCP-15     pinto durango 5.76 0.56 0.39  5.00
+## 2:      Quincy     pinto durango 5.53 0.22 0.16  2.00
+## 3: Centa Pupil small red jalisco 5.34 0.52 0.37  4.69
+## 4: TARS-VCI-4B     pinto durango 5.16 1.32 0.93 11.84
+## 5:     I9365-5      pink jalisco 5.09 1.57 1.11 14.13
+\end{verbatim}
+
+\subparagraph{Raffinose (Raff)}\label{raffinose-raff}
+
+\begin{verbatim}
+##         Entry mktclass         race Raff   sd   se   ci
+## 1:  NE1-09-20       GN      durango 0.92 0.06 0.04 0.50
+## 2: CDC Crocus       GN      durango 0.85 0.05 0.04 0.47
+## 3:   I9365-31    black mesoamerican 0.85 0.25 0.18 2.24
+## 4:       A-55    black mesoamerican 0.79 0.06 0.04 0.56
+## 5:   NE1-09-9       GN      durango 0.79 0.10 0.07 0.86
+\end{verbatim}
+
+\begin{verbatim}
+##               Entry   mktclass    race Raff   sd   se   ci
+## 1:         Sawtooth         GN durango 0.30 0.11 0.08 0.96
+## 2:          USRM-20  small red jalisco 0.30 0.03 0.02 0.28
+## 3:           Bill Z      pinto durango 0.28 0.01 0.01 0.13
+## 4: Ind. Jamaica Red red mottle jalisco 0.28 0.07 0.05 0.60
+## 5:           Apache      pinto durango 0.27 0.01 0.01 0.07
+\end{verbatim}
+
+\subparagraph{Stachyose (Stach)}\label{stachyose-stach}
+
+\begin{verbatim}
+##               Entry   mktclass         race Stach   sd   se    ci
+## 1:         ND021717      black mesoamerican  5.16 1.86 1.31 16.69
+## 2:      Centa Pupil  small red      jalisco  4.90 0.26 0.18  2.29
+## 3: Ind. Jamaica Red red mottle      jalisco  4.89 0.43 0.31  3.90
+## 4:          GN Star         GN      durango  4.78 0.17 0.12  1.57
+## 5:      Inta Precoz  small red      jalisco  4.70 0.28 0.20  2.48
+\end{verbatim}
+
+\begin{verbatim}
+##          Entry  mktclass         race Stach   sd   se   ci
+## 1:  ND040494-4     pinto      durango  3.10 0.24 0.17 2.11
+## 2:    NE1-09-9        GN      durango  3.07 0.32 0.23 2.86
+## 3:   NE1-09-20        GN      durango  3.03 0.08 0.05 0.69
+## 4:       T9905      navy mesoamerican  3.00 0.10 0.07 0.93
+## 5: F07-449-9-3 small red      jalisco  2.99 0.18 0.13 1.61
+\end{verbatim}
+
+\subparagraph{Verbascose (Verb)}\label{verbascose-verb}
+
+\begin{verbatim}
+##               Entry   mktclass    race  Verb    sd    se    ci
+## 1: Ind. Jamaica Red red mottle jalisco 0.233 0.031 0.022 0.281
+## 2:       Pink Floyd       pink jalisco 0.233 0.002 0.001 0.017
+## 3:          ROG 312       pink jalisco 0.229 0.024 0.017 0.216
+## 4:      ABC-Weihing         GN durango 0.201 0.016 0.011 0.143
+## 5:          GN Star         GN durango 0.201 0.002 0.002 0.020
+\end{verbatim}
+
+\begin{verbatim}
+##        Entry mktclass         race  Verb    sd    se    ci
+## 1: NE1-09-22       GN      durango 0.038 0.001 0.001 0.012
+## 2:     T9905     navy mesoamerican 0.037 0.011 0.008 0.096
+## 3:      A-55    black mesoamerican 0.036 0.035 0.025 0.317
+## 4:     GN9-4       GN      durango 0.033 0.032 0.022 0.284
+## 5:    McHale     navy mesoamerican 0.021 0.006 0.004 0.050
+\end{verbatim}
+
+\subparagraph{Total Oligosachharides (TOligos) = Raff + Stach +
+Verb}\label{total-oligosachharides-toligos-raff-stach-verb}
+
+\begin{verbatim}
+##               Entry   mktclass         race TOligos   sd   se    ci
+## 1:         ND021717      black mesoamerican    5.98 2.22 1.57 19.92
+## 2:      Centa Pupil  small red      jalisco    5.45 0.18 0.13  1.62
+## 3: Ind. Jamaica Red red mottle      jalisco    5.40 0.47 0.33  4.22
+## 4:          GN Star         GN      durango    5.39 0.23 0.16  2.04
+## 5:      Inta Precoz  small red      jalisco    5.32 0.25 0.18  2.24
+\end{verbatim}
+
+\begin{verbatim}
+##          Entry  mktclass         race TOligos   sd   se   ci
+## 1:      Mariah     pinto      durango    3.60 0.30 0.21 2.67
+## 2:   NE1-09-19        GN      durango    3.57 0.08 0.06 0.71
+## 3:  ND040494-4     pinto      durango    3.55 0.14 0.10 1.24
+## 4:       T9905      navy mesoamerican    3.53 0.12 0.09 1.08
+## 5: F07-449-9-3 small red      jalisco    3.50 0.06 0.04 0.57
+\end{verbatim}
+
+\subparagraph{Total Dietary Fiber (TDF) = IDF + SDF + Raff + Stach +
+Verb}\label{total-dietary-fiber-tdf-idf-sdf-raff-stach-verb}
+
+\begin{verbatim}
+##          Entry mktclass         race   TDF   sd   se    ci
+## 1:  PR0443-151    black mesoamerican 30.23 1.22 0.87 11.00
+## 2:      IP08-2    pinto      durango 30.06 0.15 0.11  1.39
+## 3:    ND021717    black mesoamerican 29.78 0.83 0.59  7.48
+## 4: AC Resolute       GN      durango 29.45 1.57 1.11 14.08
+## 5:         Max    pinto      durango 28.59 0.81 0.57  7.26
+\end{verbatim}
+
+\begin{verbatim}
+##             Entry mktclass         race   TDF   sd   se   ci
+## 1:          T9905     navy mesoamerican 23.59 0.93 0.66 8.39
+## 2:        Norstar     navy mesoamerican 23.43 0.31 0.22 2.77
+## 3: BelMiNeb-RMR-7     navy mesoamerican 23.36 0.12 0.08 1.05
+## 4:          Topaz    pinto      durango 23.18 0.00 0.00 0.02
+## 5:     AC Pintoba    pinto      durango 22.82 0.80 0.57 7.19
+\end{verbatim}
+
+\subparagraph{Boxplots by Marketclass:
+Oligosaccharides}\label{boxplots-by-marketclass-oligosaccharides}
+
+\begin{figure}
+
+\includegraphics{./bean_fiber_files/figure-latex/unnamed-chunk-9-1} \hfill{}
+
+\caption{this is the oligosaccharides caption}\label{fig:unnamed-chunk-9}
+\end{figure}
+
+\subparagraph{Boxplots by Marketclass: Soluble and Insoluble
+DF}\label{boxplots-by-marketclass-soluble-and-insoluble-df}
+
+\begin{center}\includegraphics{./bean_fiber_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\subparagraph{Boxplots by Marketclass: Total Dietary
+Fiber}\label{boxplots-by-marketclass-total-dietary-fiber}
+
+\begin{figure}
+
+\includegraphics{./bean_fiber_files/figure-latex/unnamed-chunk-11-1} \hfill{}
+
+\caption{Total Dietary Fiber content.}\label{fig:unnamed-chunk-11}
+\end{figure}
+
+fontsize: 12pt geometry: - tmargin=2cm - bmargin=2cm - lmargin=2cm -
+rmargin=3cm
+
+\end{document}
