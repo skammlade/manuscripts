@@ -14,6 +14,11 @@ output:
   html_document:
     toc: yes
   word_document: default
+header-includes: 
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{floatrow}
+  - \floatsetup[table]{capposition=top}
 graphics: yes
 sansfont: Calibri Light
 fontsize: 12pt
@@ -31,6 +36,8 @@ Durango | `r sum(fiber$race=="durango", na.rm=TRUE)/2`
 Jalisco | `r sum(fiber$race=="jalisco", na.rm=TRUE)/2`
 Mesoamerican | `r sum(fiber$race=="mesoamerican", na.rm=TRUE)/2`
 
+Table: Number of entries representing each race.
+
 | Market Class | # Entries |
 ------------ | ----------
 pinto | `r sum(fiber$mktclass=="pinto", na.rm=TRUE)/2`
@@ -45,19 +52,16 @@ black mottle | `r sum(fiber$mktclass=="black mottle", na.rm=TRUE)/2`
 flor de mayo | `r sum(fiber$mktclass=="flor de mayo", na.rm=TRUE)/2`
 red mottle | `r sum(fiber$mktclass=="red mottle", na.rm=TRUE)/2`
 
-## Summary Statistics
-Below are summary statistics for all dietary fiber components for all entries.
-```{r echo=FALSE}
-summary(fiber[,7:14])
-```
+Table: Number of entries representing each market class.
 
-## Results: Entries
+## Results: Entry Rankings
 
 Tables below show the five entries with the greatest and five entries with the lowest values of each fiber component averaged across the two replications including standard deviation (sd), standard error (se) and confindence intervals (ci).
 
-##### Insoluble Dietary Fiber (IDF)
+## - Insoluble Dietary Fiber (IDF) 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
 fiber<- read.csv("fiber.csv")
 source('summarySE.R')
 summ.IDF <-summarySE(fiber, measurevar="IDF", groupvars=c("Entry","mktclass","race"))
@@ -67,10 +71,13 @@ f.IDF <- subset(summ.IDF, select=c(Entry, mktclass, race, IDF, sd, se, ci))
 newdata <- f.IDF[order(-f.IDF$IDF), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest IDF content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest IDF content.")
 ```
-##### Soluble Dietary Fiber (SDF)
+
+## -  Soluble Dietary Fiber (SDF)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -82,10 +89,13 @@ f.SDF <- subset(summ.SDF, select=c(Entry, mktclass, race, SDF, sd, se, ci))
 newdata <- f.SDF[order(-f.SDF$SDF), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest SDF content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest SDF content.")
 ```
-##### Raffinose (Raff)
+
+## -  Raffinose (Raff)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -97,10 +107,13 @@ f.Raff <- subset(summ.Raff, select=c(Entry, mktclass, race, Raff, sd, se, ci))
 newdata <- f.Raff[order(-f.Raff$Raff), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest raffinose content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest raffinose content.")
 ```
-##### Stachyose (Stach)
+
+## -  Stachyose (Stach)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -112,10 +125,13 @@ f.stach <- subset(summ.stach, select=c(Entry, mktclass, race, Stach, sd, se, ci)
 newdata <- f.stach[order(-f.stach$Stach), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest stachyose content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest stachyose content.")
 ```
-##### Verbascose (Verb)
+
+## -  Verbascose (Verb)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -127,10 +143,13 @@ f.Verb <- subset(summ.Verb, select=c(Entry, mktclass, race, Verb, sd, se, ci))
 newdata <- f.Verb[order(-f.Verb$Verb), ]
 newdata[,4:7] <- round(newdata[,4:7], 3)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest verbascose content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest verbascose content.")
 ```
-##### Total Oligosachharides (TOligos) = Raff + Stach + Verb
+
+## -  Total Oligosachharides (TOligos)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -142,11 +161,15 @@ f.TOligos <- subset(summ.TOligos, select=c(Entry, mktclass, race, TOligos, sd, s
 newdata <- f.TOligos[order(-f.TOligos$TOligos), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest total oligosaccharide (= Raff + Stach + Verb) content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest total oligosaccharide (= Raff + Stach + Verb) content.")
 ```
-##### Total Dietary Fiber (TDF) = IDF + SDF + Raff + Stach + Verb
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+## -  Total Dietary Fiber (TDF) 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Table #. Total Dietary Fiber top 5 and bottom 5."}
 library(data.table)
 fiber<- read.csv("fiber.csv")
 source('summarySE.R')
@@ -157,8 +180,10 @@ f.TDF <- subset(summ.TDF, select=c(Entry, mktclass, race, TDF, sd, se, ci))
 newdata <- f.TDF[order(-f.TDF$TDF), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
-head(DT, 5)
-tail(DT,5)
+head <- head(DT, 5)
+kable(head, caption="Five entries with greatest total DF (= IDF + SDF + Raff + Stach + Verb) content.")
+tail <- tail(DT,5)
+kable(tail, caption="Five entries with lowest total DF (= IDF + SDF + Raff + Stach + Verb) content.")
 ```
 
 
@@ -183,7 +208,7 @@ source('boxplot.mktclass.R')
 plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
 ```
 
-| Race | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
+| Marketclass | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
 ---------|--------|--------|---------|---------|
 black | `r round(mean(verb.black$value),3)` a | `r round(mean(raff.black$value),3)` c | `r round(mean(stach.black$value),2)` b | `r round(mean(toligos.black$value),2)` bc |
 black mottle | `r round(mean(verb.blackmottle$value),3)` ab | `r round(mean(raff.blackmottle$value),3)` bc | `r round(mean(stach.blackmottle$value),2)` ab | `r round(mean(toligos.blackmottle$value),2)` ab |
@@ -204,7 +229,7 @@ source('boxplot.mktclass.R')
 plot_grid(p.IDF.mkt, p.SDF.mkt, labels = c("A", "B"), ncol = 2)
 ```
 
-| Race | Insoluble DF | Soluble DF
+| Marketclass | Insoluble DF | Soluble DF
 ---------|--------|--------
 black | `r round(mean(idf.black$value),3)` cd | `r round(mean(sdf.black$value),3)` b 
 black mottle | `r round(mean(idf.blackmottle$value),3)` abc | `r round(mean(sdf.blackmottle$value),3)` ab 
@@ -225,7 +250,7 @@ source('boxplot.mktclass.R')
 p.TDF.mkt
 ```
 
-| Race | Total DF 
+| Marketclass | Total DF 
 ---------|--------
 black | `r round(mean(tdf.black$value),3)` bc 
 black mottle | `r round(mean(tdf.blackmottle$value),3)` abc 

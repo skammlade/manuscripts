@@ -62,3 +62,38 @@ grid.arrange(p.IDF.race, p.SDF.race, legend,
              nrow = 2, 
              layout_matrix = rbind(c(1,2), c(3,3)),
              widths = c(4, 4), heights = c(4.5, 0.5))
+
+
+fiber<- read.csv("fiber.csv")
+ftypeSummary <- apply(fiber[, 7:14], 2, function(x) tapply(x, fiber$race, summary))
+ftypeSummary <- lapply(ftypeSummary, do.call, what = rbind)
+ftypeSummary
+
+fiber.one<- read.csv("fiber_facet.csv")
+ftypeSummary <- apply(fiber.one[, 8, drop=FALSE], 2, function(x) tapply(x, fiber.one$ftype, summary))
+ftypeSummary <- lapply(ftypeSummary, do.call, what = rbind)
+ftypeSummary
+
+library(xtable)
+fiber<- read.csv("fiber.csv")
+options(xtable.caption.placement = 'bottom', # notice \floatsetup overrides
+        xtable.include.rownames = FALSE,
+        xtable.comment = FALSE,
+        xtable.booktabs = TRUE)
+
+xtable(
+  data.frame(
+    Race = c(Durango, Jalisco, Mesoamerican), 
+    Entries = c((sum(fiber$race=="durango", na.rm=TRUE)/2), (sum(fiber$race=="jalisco", na.rm=TRUE)/2), (sum(fiber$race=="mesoamerican", na.rm=TRUE)/2`))), 
+  caption='caption')
+
+
+## Summary Statistics
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+fiber.one<- read.csv("fiber_facet.csv")
+ftypeSummary <- apply(fiber.one[, 8, drop=FALSE], 2, function(x) tapply(x, fiber.one$ftype, summary))
+ftypeSummary <- lapply(ftypeSummary, do.call, what = rbind)
+library(knitr)
+kable(ftypeSummary, caption="Summary statistics for fiber types across all entries.")
+```
