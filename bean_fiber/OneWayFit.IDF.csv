@@ -1,0 +1,5 @@
+             Df Sum Sq Mean Sq F value   Pr(>F)    
+mktclass     11   76.8   6.978   6.067 2.06e-09 ***
+Residuals   552  634.9   1.150                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

@@ -1,45 +1,19 @@
 ##    -   ANOVA Tables
 
-##### IDF
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
 fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(IDF~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### SDF
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(SDF~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### Raffinose
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Raff~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### Stachyose
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Stach~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### Verbascose
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Verb~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### Total Oligosaccharides (TOligos)
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(TOligos~mktclass, data=fiber)
-summary(OneWayFit)
-```
-##### Total Dietary Fiber (TDF)
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(TDF~mktclass, data=fiber)
-summary(OneWayFit)
-```
+
+OneWayFit.IDF <- aov(IDF~mktclass, data=fiber)
+
+OneWayFit.SDF <- aov(SDF~mktclass, data=fiber)
+
+OneWayFit.Raff <- aov(Raff~mktclass, data=fiber)
+
+OneWayFit.Stach <- aov(Stach~mktclass, data=fiber)
+
+OneWayFit.Verb <- aov(Verb~mktclass, data=fiber)
+
+OneWayFit.TOligos <- aov(TOligos~mktclass, data=fiber)
+
+OneWayFit.TDF <- aov(TDF~mktclass, data=fiber)
 

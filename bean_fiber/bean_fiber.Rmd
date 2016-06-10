@@ -54,11 +54,12 @@ red mottle | `r sum(fiber$mktclass=="red mottle", na.rm=TRUE)/2`
 
 Table: Number of entries representing each market class.
 
+
 ## Results: Entry Rankings
 
 Tables below show the five entries with the greatest and five entries with the lowest values of each fiber component averaged across the two replications including standard deviation (sd), standard error (se) and confindence intervals (ci).
 
-## - Insoluble Dietary Fiber (IDF) 
+## -- Insoluble Dietary Fiber (IDF) 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 library(knitr)
@@ -77,7 +78,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest IDF content.")
 ```
 
-## -  Soluble Dietary Fiber (SDF)
+## --  Soluble Dietary Fiber (SDF)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -95,7 +96,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest SDF content.")
 ```
 
-## -  Raffinose (Raff)
+## --  Raffinose (Raff)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -113,7 +114,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest raffinose content.")
 ```
 
-## -  Stachyose (Stach)
+## --  Stachyose (Stach)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -131,7 +132,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest stachyose content.")
 ```
 
-## -  Verbascose (Verb)
+## --  Verbascose (Verb)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -149,7 +150,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest verbascose content.")
 ```
 
-## -  Total Oligosachharides (TOligos)
+## --  Total Oligosachharides (TOligos)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 fiber<- read.csv("fiber.csv")
@@ -167,7 +168,7 @@ tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest total oligosaccharide (= Raff + Stach + Verb) content.")
 ```
 
-## -  Total Dietary Fiber (TDF) 
+## --  Total Dietary Fiber (TDF) 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Table #. Total Dietary Fiber top 5 and bottom 5."}
 library(data.table)
@@ -195,7 +196,7 @@ fiber.one<- read.csv("fiber_facet.csv")
 ```
 
 
-##   -   Boxplots
+##   --   Boxplots
 Figures below depict fiber content by market class. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source('subset.race.R')
@@ -271,7 +272,7 @@ tan | `r round(mean(tdf.tan$value),3)` abc
 source('subset.race_real.R')
 ```
 
-##   -   Boxplots
+##   --   Boxplots
 Figures below depict fiber content by race.
 
 ```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by race (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
@@ -310,7 +311,54 @@ Durango | `r round(mean(tdf.durango$value),3)` a |
 Jalisco | `r round(mean(tdf.jalisco$value),3)` b | 
 Mesoamerican | `r round(mean(tdf.meso$value),3)` a |
 
+## Statistical Methods
 
+Statistical analyses, figures, tables, and reporting was completed using
+
+## --  *Assumptions of Normality and Homogeneity of Variance*
+
+Insoluble fiber, soluble fiber, raffanose, stachyose, and verbascose data were concluded to meet the assumptions of normality after plotting histograms, qqplots, and residuals versus predicted values as well as conducting Shapiro-Wilk and one-sample Kolmogorov-Smirnov normality tests.
+
+```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Histograms of unique fiber components."}
+source('plot.hist.R')
+library(Rmisc)
+plot_grid(p.hist.IDF, p.hist.SDF, p.hist.Verb, p.hist.Raff, p.hist.Stach, labels = c("A", "B", "C", "D", "E", "F"), ncol = 2)
+```
+
+## -- *One-way ANOVA*
+
+One-way analysis of variance was conducted to determine the effect of 1)market class and 2) race on fiber components of the `r nrow(fiber)/2` entries.
+
+#### *1) Market class*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source('anova.mktclass.R')
+library(xtable, knitr)
+kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between market classes.", digits=4)
+kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between market classes.", digits=4)
+kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between market classes.", digits=4)
+kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffanose DF between market classes.", digits=4)
+kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose DF between market classes.", digits=4)
+kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides DF between market classes.", digits=4)
+kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between market classes.", digits=4)
+```
+
+#### *2) Race*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source('anova.race.R')
+library(xtable, knitr)
+kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between races.", digits=4)
+kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between races.", digits=4)
+kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between races.", digits=4)
+kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffanose DF between races.", digits=4)
+kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose DF between races.", digits=4)
+kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides DF between races.", digits=4)
+kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between races.", digits=4)
+```
+
+
+## -- Pairwise Comparisons
 
 
 
