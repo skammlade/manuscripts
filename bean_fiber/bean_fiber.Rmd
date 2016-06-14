@@ -4,9 +4,6 @@ title: Variation of dietary fiber content in 282 common bean genotypes from the 
 author: "skammlade"
 date: "31 May 2016"
 output:
-  word_document: 
-    fig_caption: yes
-    toc: yes
   pdf_document:
     fig_caption: yes
     includes:
@@ -15,6 +12,9 @@ output:
     toc: yes
     toc_depth: 2
   html_document:
+    toc: yes
+  word_document:
+    fig_caption: yes
     toc: yes
 header-includes:
 - \usepackage{booktabs}
