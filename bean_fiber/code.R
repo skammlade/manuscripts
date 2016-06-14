@@ -97,3 +97,35 @@ ftypeSummary <- lapply(ftypeSummary, do.call, what = rbind)
 library(knitr)
 kable(ftypeSummary, caption="Summary statistics for fiber types across all entries.")
 ```
+
+| Race | # Entries |
+  -------|----------
+  Durango | `r sum(fiber$race=="durango", na.rm=TRUE)/2`
+Jalisco | `r sum(fiber$race=="jalisco", na.rm=TRUE)/2`
+Mesoamerican | `r sum(fiber$race=="mesoamerican", na.rm=TRUE)/2`
+
+Table: Number of entries representing each race.
+
+| Market Class | # Entries |
+  ------------ | ----------
+  pinto | `r sum(fiber$mktclass=="pinto", na.rm=TRUE)/2`
+navy | `r sum(fiber$mktclass=="navy", na.rm=TRUE)/2`
+black | `r sum(fiber$mktclass=="black", na.rm=TRUE)/2`
+GN | `r sum(fiber$mktclass=="GN", na.rm=TRUE)/2`
+small red | `r sum(fiber$mktclass=="small red", na.rm=TRUE)/2`
+pink | `r sum(fiber$mktclass=="pink", na.rm=TRUE)/2`
+carioca | `r sum(fiber$mktclass=="carioca", na.rm=TRUE)/2`
+tan | `r sum(fiber$mktclass=="tan", na.rm=TRUE)/2`
+black mottle | `r sum(fiber$mktclass=="black mottle", na.rm=TRUE)/2`
+flor de mayo | `r sum(fiber$mktclass=="flor de mayo", na.rm=TRUE)/2`
+red mottle | `r sum(fiber$mktclass=="red mottle", na.rm=TRUE)/2`
+small white | `r sum(fiber$mktclass=="small white", na.rm=TRUE)/2`
+
+Table: Number of entries representing each market class.
+
+
+```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Histograms of unique fiber components."}
+source('plot.hist.R')
+library(Rmisc)
+plot_grid(p.hist.IDF, p.hist.SDF, p.hist.Verb, p.hist.Raff, p.hist.Stach, labels = c("A", "B", "C", "D", "E", "F"), ncol = 2)
+```

@@ -12,7 +12,7 @@ summary(OneWayFit.IDF)
 p.resid.idf <- plot(fitted(OneWayFit.IDF), residuals(OneWayFit.IDF), main="Resids vs Pred"); abline(h=0)
 # check normality of residuals
 p.hist.IDF <- ggplot(data=fiber, aes(fiber$IDF)) + geom_histogram(colour = "black", fill="white", binwidth=((max(fiber$IDF)-min(fiber$IDF))/15))
-p.qqnorm.idf <- qqnorm(residuals(OneWayFit.IDF))
+p.qqnorm.idf <- qqnorm(residuals(OneWayFit.IDF)) 
 p.qqline.idf <- qqline(residuals(OneWayFit.IDF))
 test.shap.idf <- shapiro.test(residuals(OneWayFit.IDF))
 test.ks.idf <- ks.test(residuals(OneWayFit.IDF), "pnorm", mean(residuals(OneWayFit.IDF)), sd(residuals(OneWayFit.IDF)))
@@ -35,7 +35,7 @@ p.resid.SDF <- plot(fitted(OneWayFit.SDF), residuals(OneWayFit.SDF), main="Resid
 # check normality of residuals
 p.hist.SDF <- ggplot(data=fiber, aes(fiber$SDF)) + geom_histogram(colour = "black", fill="white", binwidth=((max(fiber$SDF)-min(fiber$SDF))/15))
 p.qqnorm.SDF <- qqnorm(residuals(OneWayFit.SDF))
-p.qqline.SDF <- qqline(residuals(OneWayFit.SDF))
+p.qqnorm.SDF <- qqline(residuals(OneWayFit.SDF))
 test.shap.SDF <- shapiro.test(residuals(OneWayFit.SDF))
 test.ks.SDF <- ks.test(residuals(OneWayFit.SDF), "pnorm", mean(residuals(OneWayFit.SDF)), sd(residuals(OneWayFit.SDF)))
 
@@ -45,7 +45,7 @@ summary(OneWayFit.Raff)
 
 #diagnostics
 # residuals vs predicted values
-p.resid.Raff <- plot(fitted(OneWayFit.Raff), residuals(OneWayFit.Raff), main="Resids vs Pred"); abline(h=0)
+p.resid.Raff <- plot(fitted(OneWayFit.Raff), residuals(OneWayFit.Raff), main="Raff Original"); abline(h=0)
 # check normality of residuals
 p.hist.Raff <- ggplot(data=fiber, aes(fiber$Raff)) + geom_histogram(colour = "black", fill="white", binwidth=((max(fiber$Raff)-min(fiber$Raff))/15))
 p.qqnorm.Raff <- qqnorm(residuals(OneWayFit.Raff))
@@ -55,7 +55,7 @@ test.ks.Raff <- ks.test(residuals(OneWayFit.Raff), "pnorm", mean(residuals(OneWa
 
 #logtransform Raff
 OneWayFit.logRaff <- aov(log(Raff)~Entry, data=fiber)
-p.resid.logRaff <- plot(fitted(OneWayFit.logRaff), residuals(OneWayFit.logRaff), main="Resids vs Pred log transform"); abline(h=0)
+p.resid.logRaff <- plot(fitted(OneWayFit.logRaff), residuals(OneWayFit.logRaff), main="Raff log transform"); abline(h=0)
 p.qqnorm.Raff <- qqnorm(residuals(OneWayFit.logRaff))
 p.qqline.Raff <- qqline(residuals(OneWayFit.logRaff))
 test.shap.Raff <- shapiro.test(residuals(OneWayFit.logRaff))
@@ -89,3 +89,7 @@ p.qqnorm.Stach <- qqnorm(residuals(OneWayFit.Stach))
 p.qqline.Stach <- qqline(residuals(OneWayFit.Stach))
 test.shap.Stach <- shapiro.test(residuals(OneWayFit.Stach))
 test.ks.Stach <- ks.test(residuals(OneWayFit.Stach), "pnorm", mean(residuals(OneWayFit.Stach)), sd(residuals(OneWayFit.Stach)))
+
+layout(matrix(c(1,2,3,4),2,2)) # optional layout 
+plot(OneWayFit.Raff) # diagnostic plots
+
