@@ -25,6 +25,10 @@ p.qqline.idf <- qqline(residuals(OneWayFit.logIDF))
 test.shap.idf <- shapiro.test(residuals(OneWayFit.logIDF))
 test.ks.idf <- ks.test(residuals(OneWayFit.logIDF), "pnorm", mean(residuals(OneWayFit.logIDF)), sd(residuals(OneWayFit.logIDF)))
 
+OneWayFit.sqIDF <- aov(sqrt(IDF)~Entry, data=fiber)
+test.shap.idf <- shapiro.test(residuals(OneWayFit.sqIDF))
+test.ks.idf <- ks.test(residuals(OneWayFit.sqIDF), "pnorm", mean(residuals(OneWayFit.logIDF)), sd(residuals(OneWayFit.logIDF)))
+
 #one way ANOVA
 OneWayFit.SDF <- aov(SDF~Entry, data=fiber)
 summary(OneWayFit.SDF)
@@ -90,6 +94,9 @@ p.qqline.Stach <- qqline(residuals(OneWayFit.Stach))
 test.shap.Stach <- shapiro.test(residuals(OneWayFit.Stach))
 test.ks.Stach <- ks.test(residuals(OneWayFit.Stach), "pnorm", mean(residuals(OneWayFit.Stach)), sd(residuals(OneWayFit.Stach)))
 
-layout(matrix(c(1,2,3,4),2,2)) # optional layout 
-plot(OneWayFit.Raff) # diagnostic plots
+
+
+
+
+
 
