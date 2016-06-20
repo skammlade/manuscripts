@@ -1,8 +1,8 @@
 ---
-title: Variation of dietary fiber content in 282 common bean genotypes from the middle
+title: Variation in dietary fiber content in 282 common bean genotypes from the middle
   american gene pool
 author: "skammlade"
-date: "31 May 2016"
+date: "17 June 2016"
 output:
   pdf_document:
     fig_caption: yes
@@ -19,8 +19,9 @@ output:
 header-includes:
 - \usepackage{booktabs}
 - \usepackage{longtable}
-- \usepackage{floatrow}
-- \floatsetup[table]{capposition=top}
+- \captionsetup[table]{singlelinecheck=false,justification=raggedright,position=top,skip=50pt}
+#- \usepackage{floatrow}
+#- \floatsetup[table]{capposition=top}
 graphics: yes
 sansfont: Calibri Light
 fontsize: 12pt
@@ -34,10 +35,10 @@ fontsize: 12pt
 fiber<- read.csv("fiber.csv")
 ```
 
-`r nrow(fiber)/2` entries from the BeanCAP study were grown in Fort Collins, CO in 2015 to determine variation in fiber content. All entries originated from the Middle American gene pool and were further subdivided into the following races and market classes: 
+`r nrow(fiber)/2` entries from the BeanCAP study were grown in Fort Collins, CO in 2015. All entries originated from the Middle American gene pool and were further subdivided into three races and twelve market classes (Table 1). Beans were analyzed for various fiber components to determine the effect of marketclass and race (Table 2).
 
-|Durango                  | |Jalisco                 |  |Mesoamerican              |
-| ------------ | ----------- | ------------ |------------ | ------------ | ----------- |
+|Durango                  | |Jalisco                 |  |Mesoamerican                  |  |             
+| ------------ | ----------- | ------------ |------------ | --------------- | ----------- |
 | Market Class | No. Entries | Market Class | No. Entries | Market Class | No. Entries | 
 | ------------ | ----------- | ------------ |------------ | ------------ | ----------- |
 | GN | `r sum(fiber$mktclass=="GN", na.rm=TRUE)/2` |  black mottle | `r sum(fiber$mktclass=="black mottle", na.rm=TRUE)/2` | black     |   `r sum(fiber$mktclass=="black", na.rm=TRUE)/2`                                          
@@ -49,7 +50,21 @@ fiber<- read.csv("fiber.csv")
 
 Table: Number of entries by race and market class included in the study.
 
+Fiber component | Description
+--------------------|-------------------------------------------
+Soluble | Dissolves in water
+Insoluble | Does not dissolve in water
+Verbascose | A pentasachharide
+Raffinose | A trisaccharide
+Stachyose | A tetrasaccharide
+Total Oligosaccharides | Sum of verbascose, raffinose, and stachyose
+Total Dietary Fiber | Sum of soluble fiber, insoluble fiber, and total oligosaccharides
 
+Table: Fiber components measured in the study. Verbascose, raffinose, and stachyose are grouped together broadly as total oligosaccharides. These carbohydrates are not digested in the small intestine and are instead passed into the large intestine to be fermented by microflora with the production of gas.
+
+The red mottle market class had the greatest mean total dietary fiber, as well as the greatest mean verbascose, stachyose, total oligosaccharide, and insoluble fiber. The black mottle market class had the greatest mean raffinose and soluble dietary fiber content. Both of these market classes included only one entry each ('Orcha' a black mottle; 'Ind. Jamaica Red' a red mottle) making these findings not as insightful. A one-way analysis of variance revealed a significant effect (p<0.5) of market class on all fiber components.
+
+A one-way analysis of variance revealed a significant effect (p<0.5) of race on all fiber components except total oligosachharide content. Durango and jalisco races had the greatest mean verbascose and stachyose content, mesoamerican race had the greatest mean raffinose content. Jalisco had the greatest mean insoluble DF, soluble DF, and total dietary fiber content.
 
 ## Results: Entry Rankings
 
@@ -73,6 +88,8 @@ kable(head, caption="Five entries with greatest IDF content.")
 tail <- tail(DT,5)
 kable(tail, caption="Five entries with lowest IDF content.")
 ```
+
+\pagebreak
 
 ## --  Soluble Dietary Fiber (SDF)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -159,9 +176,9 @@ newdata <- f.TOligos[order(-f.TOligos$TOligos), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
 head <- head(DT, 5)
-kable(head, caption="Five entries with greatest total oligosaccharide (= Raff + Stach + Verb) content.")
+kable(head, caption="Five entries with greatest oligosaccharide content.")
 tail <- tail(DT,5)
-kable(tail, caption="Five entries with lowest total oligosaccharide (= Raff + Stach + Verb) content.")
+kable(tail, caption="Five entries with lowest oligosaccharide content.")
 ```
 
 ## --  Total Dietary Fiber (TDF) 
@@ -178,9 +195,9 @@ newdata <- f.TDF[order(-f.TDF$TDF), ]
 newdata[,4:7] <- round(newdata[,4:7], 2)
 DT <- data.table(newdata)
 head <- head(DT, 5)
-kable(head, caption="Five entries with greatest total DF (= IDF + SDF + Raff + Stach + Verb) content.")
+kable(head, caption="Five entries with greatest total DF content.")
 tail <- tail(DT,5)
-kable(tail, caption="Five entries with lowest total DF (= IDF + SDF + Raff + Stach + Verb) content.")
+kable(tail, caption="Five entries with lowest total DF content.")
 ```
 
 
@@ -193,11 +210,10 @@ fiber.one<- read.csv("fiber_facet.csv")
 
 
 ##   --   Boxplots
-Figures below depict fiber content by market class. 
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source('subset.race.R')
 ```
-
 
 ```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by Marketclass: Oligosaccharides
@@ -205,24 +221,28 @@ source('boxplot.mktclass.R')
 plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
 ```
 
+\pagebreak
+
 | Marketclass | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
 ---------|--------|--------|---------|---------|
 black | `r round(mean(verb.black$value),3)` a | `r round(mean(raff.black$value),3)` c | `r round(mean(stach.black$value),2)` b | `r round(mean(toligos.black$value),2)` bc |
-black mottle | `r round(mean(verb.blackmottle$value),3)` ab | **`r round(mean(raff.blackmottle$value),3)`** bc | `r round(mean(stach.blackmottle$value),2)` ab | `r round(mean(toligos.blackmottle$value),2)` ab |
+black mottle | `r round(mean(verb.blackmottle$value),3)` ab | **`r round(mean(raff.blackmottle$value),3)` bc** | `r round(mean(stach.blackmottle$value),2)` ab | `r round(mean(toligos.blackmottle$value),2)` ab |
 carioca | `r round(mean(verb.carioca$value),3)` ab | `r round(mean(raff.carioca$value),3)` bc | `r round(mean(stach.carioca$value),2)` ab | `r round(mean(toligos.carioca$value),2)` abc |
 flor de mayo | `r round(mean(verb.flordemayo$value),3)` abd | `r round(mean(raff.flordemayo$value),3)` bc | `r round(mean(stach.flordemayo$value),2)` ab | `r round(mean(toligos.flordemayo$value),2)` abc |
 GN | `r round(mean(verb.GN$value),3)` b | `r round(mean(raff.GN$value),3)` ac | `r round(mean(stach.GN$value),2)` b | `r round(mean(toligos.GN$value),2)` bc |
 navy | `r round(mean(verb.navy$value),3)` ac | `r round(mean(raff.navy$value),3)` ac | `r round(mean(stach.navy$value),2)` a | `r round(mean(toligos.navy$value),2)` a |
 pink | `r round(mean(verb.pink$value),3)` bc | `r round(mean(raff.pink$value),3)` b | `r round(mean(stach.pink$value),2)` ab | `r round(mean(toligos.pink$value),2)` ab |
 pinto | `r round(mean(verb.pinto$value),3)` b | `r round(mean(raff.pinto$value),3)` b | `r round(mean(stach.pinto$value),2)` b | `r round(mean(toligos.pinto$value),2)` b |
-red mottle | **`r round(mean(verb.redmottle$value),3)`** d | `r round(mean(raff.redmottle$value),3)` ab | **`r round(mean(stach.redmottle$value),2)`** c | **`r round(mean(toligos.redmottle$value),2)`** c |
+red mottle | **`r round(mean(verb.redmottle$value),3)` d** | `r round(mean(raff.redmottle$value),3)` ab | **`r round(mean(stach.redmottle$value),2)` c** | **`r round(mean(toligos.redmottle$value),2)` c** |
 small red | `r round(mean(verb.smallred$value),3)` b | `r round(mean(raff.smallred$value),3)` ab | `r round(mean(stach.smallred$value),2)` b | `r round(mean(toligos.smallred$value),2)` bc |
 small white | `r round(mean(verb.smallwhite$value),3)` ab | `r round(mean(raff.smallwhite$value),3)` bc | `r round(mean(stach.smallwhite$value),2)` ab | `r round(mean(toligos.smallwhite$value),2)` abc |
 tan | `r round(mean(verb.tan$value),3)` ab | `r round(mean(raff.tan$value),3)` bc | `r round(mean(stach.tan$value),2)` ab | `r round(mean(toligos.tan$value),2)` ab |
 
 Table: Mean fiber component content by market class. Values with different letters differ significantly between market classes (p<0.05). Bolded values are the greatest among market classes.
 
-```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in 282 common bean genotypes by marketclass,"}
+\pagebreak
+
+```{r fig.width = 8, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in 282 common bean genotypes by marketclass."}
 ##Boxplots by Marketclass: Soluble and Insoluble DF
 source('boxplot.mktclass.R')
 plot_grid(p.IDF.mkt, p.SDF.mkt, labels = c("A", "B"), ncol = 2)
@@ -231,21 +251,21 @@ plot_grid(p.IDF.mkt, p.SDF.mkt, labels = c("A", "B"), ncol = 2)
 | Marketclass | Insoluble DF | Soluble DF
 ---------|--------|--------
 black | `r round(mean(idf.black$value),2)` cd | `r round(mean(sdf.black$value),2)` b 
-black mottle | `r round(mean(idf.blackmottle$value),2)` abc | **`r round(mean(sdf.blackmottle$value),2)`** ab 
+black mottle | `r round(mean(idf.blackmottle$value),2)` abc | **`r round(mean(sdf.blackmottle$value),2)` ab** 
 carioca | `r round(mean(idf.carioca$value),2)` abc | `r round(mean(sdf.carioca$value),2)` ab
 flor de mayo | `r round(mean(idf.flordemayo$value),2)` abc | `r round(mean(sdf.flordemayo$value),2)` ab
 GN | `r round(mean(idf.GN$value),2)` ab | `r round(mean(sdf.GN$value),2)` ab 
 navy | `r round(mean(idf.navy$value),2)` a | `r round(mean(sdf.navy$value),2)` ab 
 pink | `r round(mean(idf.pink$value),2)` abc | `r round(mean(sdf.pink$value),2)` a 
 pinto | `r round(mean(idf.pinto$value),2)` bd | `r round(mean(sdf.pinto$value),2)` b 
-red mottle | **`r round(mean(idf.redmottle$value),2)`** abc | `r round(mean(sdf.redmottle$value),2)` ab 
+red mottle | **`r round(mean(idf.redmottle$value),2)` abc** | `r round(mean(sdf.redmottle$value),2)` ab 
 small red | `r round(mean(idf.smallred$value),2)` c | `r round(mean(sdf.smallred$value),2)` ab 
 small white | `r round(mean(idf.smallwhite$value),2)` abc | `r round(mean(sdf.smallwhite$value),2)` ab 
 tan | `r round(mean(idf.tan$value),2)` abc | `r round(mean(sdf.tan$value),2)` ab 
 
 Table: Mean fiber component content by market class. Values with different letters differ significantly between market classes (p<0.05). Bolded values are the greatest among market classes.
 
-```{r fig.width = 4, fig.height=5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by marketclass"}
+```{r fig.width = 4, fig.height=4.5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Total Dietary Fiber content in 282 common bean genotypes by marketclass."}
 ##Boxplots by Marketclass: Total Dietary Fiber
 source('boxplot.mktclass.R')
 p.TDF.mkt
@@ -261,7 +281,7 @@ GN | `r round(mean(tdf.GN$value),2)` cd
 navy | `r round(mean(tdf.navy$value),2)` a 
 pink | `r round(mean(tdf.pink$value),2)` bd 
 pinto | `r round(mean(tdf.pinto$value),2)` ac 
-red mottle | `r round(mean(tdf.redmottle$value),2)` bc 
+red mottle | **`r round(mean(tdf.redmottle$value),2)` bc**
 small red | `r round(mean(tdf.smallred$value),2)` b 
 small white | `r round(mean(tdf.smallwhite$value),2)` abc 
 tan | `r round(mean(tdf.tan$value),2)` abc 
@@ -275,9 +295,8 @@ source('subset.race_real.R')
 ```
 
 ##   --   Boxplots
-Figures below depict fiber content by race.
 
-```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by race (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
+```{r fig.width = 8, fig.height=6.5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by race (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by race: Oligosaccharides
 source('boxplot.race.R')
 plot_grid(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2, align="w")
@@ -325,7 +344,7 @@ Statistical analyses, figures, tables, and reporting was completed using RStudio
 
 ## --  *ANOVA Assumptions*
 
-Insoluble fiber, soluble fiber, raffanose, stachyose, and verbascose data were concluded to meet the assumptions of normality of residuals and equality of variance after plotting qqplots, and residuals versus predicted values. Diagnostic plots are shown below.
+Insoluble fiber, soluble fiber, raffinose, stachyose, and verbascose data were concluded to meet the assumptions of normality of residuals and equality of variance after plotting qqplots, and residuals versus predicted values. Diagnostic plots are shown below.
 
 ```{r fig.width = 8, fig.height=10, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 source('plot.test.R')
@@ -336,7 +355,7 @@ library(cowplot)
 plot_grid(p1,p2,p3,p4, ncol=2, labels = c("A", "B", "C", "D"))
 ```
 
-```{r fig.width = 8, fig.height=9, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Residual versus fitted and q-q plots of verbascose, raffanose, and stachyose. The raffanose plots look to reveal non-homogeneity of variance, but both the log and square root transformations did not improve it enough to warrant transforming the data."}
+```{r fig.width = 8, fig.height=9, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Residual versus fitted and q-q plots of verbascose, raffinose, and stachyose. The raffinose plots look to reveal non-homogeneity of variance, but both the log and square root transformations did not improve it enough to warrant transforming the data."}
 library(cowplot)
 plot_grid(p5,p6,p7,p8,p9,p10, ncol=2, labels = c("A", "B", "C", "D", "E", "F"))
 ```
@@ -355,7 +374,7 @@ library(xtable, knitr)
 kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between market classes.", digits=4) 
 kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between market classes.", digits=4)
 kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between market classes.", digits=4)
-kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffanose DF between market classes.", digits=4)
+kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffinose DF between market classes.", digits=4)
 kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose DF between market classes.", digits=4)
 kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides DF between market classes.", digits=4)
 kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between market classes.", digits=4)
@@ -371,7 +390,7 @@ library(xtable, knitr)
 kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between races.", digits=4)
 kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between races.", digits=4)
 kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between races.", digits=4)
-kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffanose between races.", digits=4)
+kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffinose between races.", digits=4)
 kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose between races.", digits=4)
 kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides between races.", digits=4)
 kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between races.", digits=4)
@@ -380,7 +399,7 @@ kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in
 
 ## -- *Pairwise Comparisons*
 
-Tukey adjusted pairwise comparisons were made between each market class and each race for each fiber component using the TukeyHSD funcion.
+Tukey adjusted pairwise comparisons were made between each market class and each race for each fiber component using the TukeyHSD funcion. These results were used in mean summary tables below boxplots.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
 OneWayFit <- aov(IDF~race, data=fiber)
