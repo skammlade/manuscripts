@@ -1,5 +1,5 @@
 ---
-title: Variation in dietary fiber content in 282 common bean genotypes from the middle
+title: Dietary fiber content in common bean from the middle
   american gene pool
 author: "skammlade"
 date: "17 June 2016"
@@ -20,8 +20,6 @@ header-includes:
 - \usepackage{booktabs}
 - \usepackage{longtable}
 - \captionsetup[table]{singlelinecheck=false,justification=raggedright,position=top,skip=50pt}
-#- \usepackage{floatrow}
-#- \floatsetup[table]{capposition=top}
 graphics: yes
 sansfont: Calibri Light
 fontsize: 12pt
@@ -33,20 +31,22 @@ fontsize: 12pt
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
 ```
 
-`r nrow(fiber)/2` entries from the BeanCAP study were grown in Fort Collins, CO in 2015. All entries originated from the Middle American gene pool and were further subdivided into three races and twelve market classes (Table 1). Beans were analyzed for various fiber components to determine the effect of marketclass and race (Table 2).
+`r nrow(fibersub)/2` entries from the BeanCAP study were grown in Fort Collins, CO in 2015. All entries originated from the Middle American gene pool and were further subdivided into three races and twelve market classes (Table 1). Beans were analyzed for various fiber components to determine the effect of marketclass and race (Table 2).
 
-|Durango                  | |Jalisco                 |  |Mesoamerican                  |  |             
-| ------------ | ----------- | ------------ |------------ | --------------- | ----------- |
-| Market Class | No. Entries | Market Class | No. Entries | Market Class | No. Entries | 
-| ------------ | ----------- | ------------ |------------ | ------------ | ----------- |
-| GN | `r sum(fiber$mktclass=="GN", na.rm=TRUE)/2` |  black mottle | `r sum(fiber$mktclass=="black mottle", na.rm=TRUE)/2` | black     |   `r sum(fiber$mktclass=="black", na.rm=TRUE)/2`                                          
-| pinto | `r sum(fiber$mktclass=="pinto", na.rm=TRUE)/2` | flor de mayo | `r sum(fiber$mktclass=="flor de mayo", na.rm=TRUE)/2` | carioca     |`r sum(fiber$mktclass=="carioca", na.rm=TRUE)/2`                                             
-|       |                                             | pink | `r sum(fiber$mktclass=="pink", na.rm=TRUE)/2`                 | navy      | `r sum(fiber$mktclass=="navy", na.rm=TRUE)/2`                                            
-|       |                                             | red mottle | `r sum(fiber$mktclass=="red mottle", na.rm=TRUE)/2`     | small white     |  `r sum(fiber$mktclass=="small white", na.rm=TRUE)/2`                                           
-|       |                                             | small red | `r sum(fiber$mktclass=="small red", na.rm=TRUE)/2`       |  tan     |  `r sum(fiber$mktclass=="tan", na.rm=TRUE)/2` 
-| **Totals** | **`r sum(fiber$race=="durango", na.rm=TRUE)/2`** |           | **`r sum(fiber$race=="jalisco", na.rm=TRUE)/2`** |                      | **`r sum(fiber$race=="mesoamerican", na.rm=TRUE)/2`**
+| Race | Market Class | No. Entries | 
+| ------------ | ----------- | ------------ | 
+| Durango | | **`r sum(fibersub$race=="durango", na.rm=TRUE)/2`** |
+| | GN | `r sum(fibersub$mktclass=="GN", na.rm=TRUE)/2` |
+| | pink | `r sum(fibersub$mktclass=="pink", na.rm=TRUE)/2` |
+| | pinto | `r sum(fibersub$mktclass=="pinto", na.rm=TRUE)/2` |
+| | small red | `r sum(fibersub$mktclass=="small red", na.rm=TRUE)/2` | 
+| Mesoamerican | | **`r sum(fibersub$race=="mesoamerican", na.rm=TRUE)/2`** |
+| | black |   `r sum(fibersub$mktclass=="black", na.rm=TRUE)/2` |
+| | small white     |  `r sum(fibersub$mktclass=="small white", na.rm=TRUE)/2` |
 
 Table: Number of entries by race and market class included in the study.
 
