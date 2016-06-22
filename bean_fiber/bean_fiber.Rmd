@@ -252,7 +252,7 @@ source('subset.race.R')
 ```{r fig.width = 8, fig.height=8, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by marketclass (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by Marketclass: Oligosaccharides
 source('boxplot.mktclass.R')
-plot_grid(p.Verb.mkt, p.Raff.mkt, p.Stach.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
+plot_grid( p.Raff.mkt, p.Stach.mkt, p.Verb.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
 ```
 
 \pagebreak
@@ -333,7 +333,7 @@ source('subset.race_real.R')
 ```{r fig.width = 8, fig.height=6.5, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Oligosaccharide content in 282 common bean genotypes by race (A) Raffinose, (B) Stachyose, (C) Verbascose, and (D) total oligosaccharides (= Raff + Stach + Verb)."}
 ##Boxplots by race: Oligosaccharides
 source('boxplot.race.R')
-plot_grid(p.Verb.race, p.Raff.race, p.Stach.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2, align="w")
+plot_grid(p.Raff.race, p.Stach.race, p.Verb.race, p.TOligos.race, labels = c("A", "B", "C", "D"), ncol = 2, align="w")
 ```
 
 | Race | Verbascose | Raffinose | Stachyose | Total Oligosaccharides |
@@ -371,6 +371,8 @@ Jalisco | `r round(mean(tdf.jalisco$value),2)` b |
 Mesoamerican | `r round(mean(tdf.meso$value),2)` a |
 
 Table: Mean total dietary fiber content by race. Values with different letters differ significantly between races (p<0.05).
+
+\pagebreak
 
 ## Statistical Methods
 
