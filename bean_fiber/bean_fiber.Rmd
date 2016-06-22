@@ -54,13 +54,13 @@ Fiber component | Description
 --------------------|-------------------------------------------
 Soluble | Dissolves in water
 Insoluble | Does not dissolve in water
-Verbascose | A pentasachharide
 Raffinose | A trisaccharide
 Stachyose | A tetrasaccharide
+Verbascose | A pentasachharide
 Total Oligosaccharides | Sum of verbascose, raffinose, and stachyose
 Total Dietary Fiber | Sum of soluble fiber, insoluble fiber, and total oligosaccharides
 
-Table: Fiber components measured in the study. Verbascose, raffinose, and stachyose are grouped together broadly as total oligosaccharides. These carbohydrates are not digested in the small intestine and are instead passed into the large intestine to be fermented by microflora with the production of gas.
+Table: Fiber components measured in the study. Faffinose, stachyose, and verbascose are grouped together broadly as total oligosaccharides. These carbohydrates are not digested in the small intestine and are instead passed into the large intestine to be fermented by microflora with the production of gas.
 
 The red mottle market class had the greatest mean total dietary fiber, as well as the greatest mean verbascose, stachyose, total oligosaccharide, and insoluble fiber. The black mottle market class had the greatest mean raffinose and soluble dietary fiber content. Both of these market classes included only one entry each ('Orcha' a black mottle; 'Ind. Jamaica Red' a red mottle) making these findings not as insightful. A one-way analysis of variance revealed a significant effect (p<0.5) of market class on all fiber components.
 
@@ -74,9 +74,13 @@ Tables below show the five entries with the greatest and five entries with the l
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
 library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.IDF <-summarySE(fiber, measurevar="IDF", groupvars=c("Entry","mktclass","race"))
+summ.IDF <-summarySE(fibersub, measurevar="IDF", groupvars=c("Entry","mktclass","race"))
 summ.IDF <- data.frame(summ.IDF)
 #summ.f <- summ.F[fiber$ftype=="IDF", ]
 f.IDF <- subset(summ.IDF, select=c(Entry, mktclass, race, IDF, sd, se, ci))
@@ -94,9 +98,14 @@ kable(tail, caption="Five entries with lowest IDF content.")
 ## --  Soluble Dietary Fiber (SDF)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.SDF <-summarySE(fiber, measurevar="SDF", groupvars=c("Entry","mktclass","race"))
+summ.SDF <-summarySE(fibersub, measurevar="SDF", groupvars=c("Entry","mktclass","race"))
 summ.SDF <- data.frame(summ.SDF)
 #summ.f <- summ.F[fiber$ftype=="SDF", ]
 f.SDF <- subset(summ.SDF, select=c(Entry, mktclass, race, SDF, sd, se, ci))
@@ -112,9 +121,14 @@ kable(tail, caption="Five entries with lowest SDF content.")
 ## --  Raffinose (Raff)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.Raff <-summarySE(fiber, measurevar="Raff", groupvars=c("Entry","mktclass","race"))
+summ.Raff <-summarySE(fibersub, measurevar="Raff", groupvars=c("Entry","mktclass","race"))
 summ.Raff <- data.frame(summ.Raff)
 #summ.f <- summ.F[fiber$ftype=="Raff", ]
 f.Raff <- subset(summ.Raff, select=c(Entry, mktclass, race, Raff, sd, se, ci))
@@ -130,9 +144,14 @@ kable(tail, caption="Five entries with lowest raffinose content.")
 ## --  Stachyose (Stach)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.stach <-summarySE(fiber, measurevar="Stach", groupvars=c("Entry","mktclass","race"))
+summ.stach <-summarySE(fibersub, measurevar="Stach", groupvars=c("Entry","mktclass","race"))
 summ.stach <- data.frame(summ.stach)
 #summ.f <- summ.F[fiber$ftype=="Stach", ]
 f.stach <- subset(summ.stach, select=c(Entry, mktclass, race, Stach, sd, se, ci))
@@ -148,9 +167,14 @@ kable(tail, caption="Five entries with lowest stachyose content.")
 ## --  Verbascose (Verb)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.Verb <-summarySE(fiber, measurevar="Verb", groupvars=c("Entry","mktclass","race"))
+summ.Verb <-summarySE(fibersub, measurevar="Verb", groupvars=c("Entry","mktclass","race"))
 summ.Verb <- data.frame(summ.Verb)
 #summ.f <- summ.F[fiber$ftype=="Verb", ]
 f.Verb <- subset(summ.Verb, select=c(Entry, mktclass, race, Verb, sd, se, ci))
@@ -166,9 +190,14 @@ kable(tail, caption="Five entries with lowest verbascose content.")
 ## --  Total Oligosachharides (TOligos)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.TOligos <-summarySE(fiber, measurevar="TOligos", groupvars=c("Entry","mktclass","race"))
+summ.TOligos <-summarySE(fibersub, measurevar="TOligos", groupvars=c("Entry","mktclass","race"))
 summ.TOligos <- data.frame(summ.TOligos)
 #summ.f <- summ.F[fiber$ftype=="TOligos", ]
 f.TOligos <- subset(summ.TOligos, select=c(Entry, mktclass, race, TOligos, sd, se, ci))
@@ -185,9 +214,14 @@ kable(tail, caption="Five entries with lowest oligosaccharide content.")
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Table #. Total Dietary Fiber top 5 and bottom 5."}
 library(data.table)
+library(knitr)
+
 fiber<- read.csv("fiber.csv")
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pinto' | mktclass=='small red' | mktclass=='black' | mktclass=='small white')
+
 source('summarySE.R')
-summ.TDF <-summarySE(fiber, measurevar="TDF", groupvars=c("Entry","mktclass","race"))
+summ.TDF <- summarySE(fibersub, measurevar="TDF", groupvars=c("Entry","mktclass","race"))
 summ.TDF <- data.frame(summ.TDF)
 #summ.f <- summ.F[fiber$ftype=="TDF", ]
 f.TDF <- subset(summ.TDF, select=c(Entry, mktclass, race, TDF, sd, se, ci))
