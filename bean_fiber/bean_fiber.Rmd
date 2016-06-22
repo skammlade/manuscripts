@@ -396,40 +396,24 @@ library(cowplot)
 plot_grid(p5,p6,p7,p8,p9,p10, ncol=2, labels = c("A", "B", "C", "D", "E", "F"))
 ```
 
-## -- *One-way ANOVA*
+## -- *ANOVA*
 
-One-way analysis of variance was conducted to determine the effect of 1)market class and 2) race on fiber components of the `r nrow(fiber)/2` entries using the aov function.
+One-way analysis of variance was conducted to determine the effect of 1) rep, 2) race, and 3) marketclass. Rep was treated as random, race and marketclass were treated as fixed with marketclass nested within race.
 
 #### *1) Market class*
 
 Differences between market classes were significant (p<0.05) across all fiber components.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-source('anova.mktclass.R')
+source('anova.nest.R')
 library(xtable, knitr)
-kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between market classes.", digits=4) 
-kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between market classes.", digits=4)
-kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between market classes.", digits=4)
-kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffinose DF between market classes.", digits=4)
-kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose DF between market classes.", digits=4)
-kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides DF between market classes.", digits=4)
-kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between market classes.", digits=4)
-```
-
-#### *2) Race*
-
-Differences between races were significant (p<0.05) across all fiber components except total oligosaccharides.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-source('anova.race.R')
-library(xtable, knitr)
-kable(xtable(OneWayFit.IDF), caption="One-way ANOVA table testing differences in insoluble DF between races.", digits=4)
-kable(xtable(OneWayFit.SDF), caption="One-way ANOVA table testing differences in soluble DF between races.", digits=4)
-kable(xtable(OneWayFit.Verb), caption="One-way ANOVA table testing differences in verbascose between races.", digits=4)
-kable(xtable(OneWayFit.Raff), caption="One-way ANOVA table testing differences in raffinose between races.", digits=4)
-kable(xtable(OneWayFit.Stach), caption="One-way ANOVA table testing differences in stachyose between races.", digits=4)
-kable(xtable(OneWayFit.TOligos), caption="One-way ANOVA table testing differences in total oligosaccharides between races.", digits=4)
-kable(xtable(OneWayFit.TDF), caption="One-way ANOVA table testing differences in total DF between races.", digits=4)
+kable(xtable(OneWayFit.IDF), caption="ANOVA table testing insoluble DF.", digits=4) 
+kable(xtable(OneWayFit.SDF), caption="ANOVA table testing soluble DF.", digits=4)
+kable(xtable(OneWayFit.Raff), caption="ANOVA table testing raffinose.", digits=4)
+kable(xtable(OneWayFit.Stach), caption="ANOVA table testing stachyose.", digits=4)
+kable(xtable(OneWayFit.Verb), caption="ANOVA table testing verbascose.", digits=4)
+kable(xtable(OneWayFit.TOligos), caption="ANOVA table testing total oligosaccharides.", digits=4)
+kable(xtable(OneWayFit.TDF), caption="ANOVA table testing total DF.", digits=4)
 ```
 
 
