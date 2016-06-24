@@ -5,7 +5,7 @@ fiber<- read.csv("fiber_facet.csv")
 #load required packages
 require(ggplot2)
 require(cowplot)
-
+require(gridExtra)
 
 
 #subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
@@ -45,10 +45,6 @@ p.raff.mkt <- p.raff.mkt+ labs(y=NULL,
 
 #remove legend title
 p.raff.mkt <- p.raff.mkt  + guides(fill=guide_legend(title=NULL))
-
-#remove space between 0 and x axis
-#p <- p + scale_y_continuous(limits=c(0.2,85), expand=c(0,0))
-p.raff.mkt
 
 # Get the ggplot grob
 g.raff = ggplotGrob(p.raff.mkt)
@@ -101,10 +97,6 @@ p.stach.mkt <- p.stach.mkt+ labs(y=NULL,
 
 #remove legend title
 p.stach.mkt <- p.stach.mkt  + guides(fill=guide_legend(title=NULL))
-
-#remove space between 0 and x axis
-#p <- p + scale_y_continuous(limits=c(0.2,85), expand=c(0,0))
-p.stach.mkt
 
 # Get the ggplot grob
 g.stach = ggplotGrob(p.stach.mkt)
@@ -159,10 +151,6 @@ p.verb.mkt <- p.verb.mkt+ labs(y=NULL,
 #remove legend title
 p.verb.mkt <- p.verb.mkt  + guides(fill=guide_legend(title=NULL))
 
-#remove space between 0 and x axis
-#p <- p + scale_y_continuous(limits=c(0.2,85), expand=c(0,0))
-p.verb.mkt
-
 # Get the ggplot grob
 g.verb = ggplotGrob(p.verb.mkt)
 
@@ -215,9 +203,11 @@ p.toligos.mkt <- p.toligos.mkt+ labs(y=NULL,
 #remove legend title
 p.toligos.mkt <- p.toligos.mkt  + guides(fill=guide_legend(title=NULL))
 
-#remove space between 0 and x axis
-#p <- p + scale_y_continuous(limits=c(0.2,85), expand=c(0,0))
-p.toligos.mkt
+#save legend as a grob
+legend <- get_legend(p.toligos.mkt)
+
+#remove legend from p.toligos
+p.toligos.mkt <- p.toligos.mkt + theme(legend.position="none")
 
 # Get the ggplot grob
 g.toligos = ggplotGrob(p.toligos.mkt)
@@ -232,18 +222,16 @@ g.toligos$widths[4] = unit(4, "null")
 g.toligos$widths[7] = unit(2, "null")
 
 
-legend <- get_legend(g.toliogos)
-
-p.Score <- p.Score + theme(legend.position="none")
 
 
+
+
+
+
+grid.arrange(g.raff, g.stach, g.verb, g.toligos, legend, ncol=2, nrow = 3, 
+             layout_matrix = rbind(c(1,2),c(3,4), c(5,5)), heights = c(2.5, 2.5, 0.5))
 
 
 # Draw the plot
 #grid.newpage()
 plot_grid(g.raff, g.stach, g.verb, g.toligos )
-
-
-
-
-
