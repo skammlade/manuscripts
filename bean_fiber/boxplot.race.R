@@ -75,6 +75,7 @@ p.Raff.race <- p.Raff.race + theme(legend.position="none",
                                                               size=12),
                                    axis.title.y = element_blank())
 
+
 #add point at mean
 p.Raff.race <- p.Raff.race + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 

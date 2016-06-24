@@ -166,6 +166,9 @@ p.TDF.mkt <- p.TDF.mkt + theme(legend.position="none",
                                                           size=12),
                                axis.title.y = element_blank())
 
+#adds vertical line between categories 4 and 5
+#p.TDF.mkt <- p.TDF.mkt + geom_vline(xintercept=4.5, linetype=2)
+
 #add point at mean
 p.TDF.mkt <- p.TDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
