@@ -50,7 +50,7 @@ p.raff.mkt <- p.raff.mkt  + guides(fill=guide_legend(title=NULL))
 g.raff = ggplotGrob(p.raff.mkt)
 
 # Check for the widths - you need to change the two that are set to 1null
-g.raff$widths
+#g.raff$widths
 # The required widths are 4 and 7
 
 # Replace the default widths with relative widths:
@@ -102,7 +102,7 @@ p.stach.mkt <- p.stach.mkt  + guides(fill=guide_legend(title=NULL))
 g.stach = ggplotGrob(p.stach.mkt)
 
 # Check for the widths - you need to change the two that are set to 1null
-g.stach$widths
+#g.stach$widths
 # The required widths are 4 and 7
 
 # Replace the default widths with relative widths:
@@ -155,7 +155,7 @@ p.verb.mkt <- p.verb.mkt  + guides(fill=guide_legend(title=NULL))
 g.verb = ggplotGrob(p.verb.mkt)
 
 # Check for the widths - you need to change the two that are set to 1null
-g.verb$widths
+#g.verb$widths
 # The required widths are 4 and 7
 
 # Replace the default widths with relative widths:
@@ -186,11 +186,12 @@ p.toligos.mkt <- p.toligos.mkt + theme(axis.text.x=element_blank(),
                                  axis.text.y=element_text(family="Helvetica",
                                                           size=14), 
                                  axis.ticks.x=element_blank(),
-                                 legend.text=element_text(size=12), 
+                                 legend.text=element_text(size=10), 
+                                 legend.position="center",
                                  plot.margin=unit(c(0.5,0.5,0.5,0.5), "cm"),
-                                 legend.position="bottom",
                                  strip.text.x=element_text(size=12, face="bold"),
                                  panel.margin.x=unit(0.25, "lines"))
+
 
 #add point at mean
 p.toligos.mkt <- p.toligos.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
@@ -201,7 +202,7 @@ p.toligos.mkt <- p.toligos.mkt+ labs(y=NULL,
                                title="Total Oligosaccharides")
 
 #remove legend title
-p.toligos.mkt <- p.toligos.mkt  + guides(fill=guide_legend(title=NULL))
+p.toligos.mkt <- p.toligos.mkt  + guides(fill=guide_legend(title="marketclass"))
 
 #save legend as a grob
 legend <- get_legend(p.toligos.mkt)
@@ -213,7 +214,7 @@ p.toligos.mkt <- p.toligos.mkt + theme(legend.position="none")
 g.toligos = ggplotGrob(p.toligos.mkt)
 
 # Check for the widths - you need to change the two that are set to 1null
-g.toligos$widths
+#g.toligos$widths
 # The required widths are 4 and 7
 
 # Replace the default widths with relative widths:
@@ -222,16 +223,7 @@ g.toligos$widths[4] = unit(4, "null")
 g.toligos$widths[7] = unit(2, "null")
 
 
-
-
-
-
-
-
 grid.arrange(g.raff, g.stach, g.verb, g.toligos, legend, ncol=2, nrow = 3, 
              layout_matrix = rbind(c(1,2),c(3,4), c(5,5)), heights = c(2.5, 2.5, 0.5))
 
 
-# Draw the plot
-#grid.newpage()
-plot_grid(g.raff, g.stach, g.verb, g.toligos )
