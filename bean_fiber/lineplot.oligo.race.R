@@ -47,7 +47,3 @@ p.oli.race <- p.oli.race + labs(title="Raffinose Family Oligosaccharide Pathway 
                               y="% dry wt.")
 
 p.oli.race <- p.oli.race + scale_y_continuous(limits=c(0,4.5), expand=c(0,0))
-
-p.oli.race
-
-

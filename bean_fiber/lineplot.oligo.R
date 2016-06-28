@@ -48,7 +48,3 @@ p.oli.mkt <- p.oli.mkt + labs(title="Raffinose Family Oligosaccharide Pathway \n
 
 p.oli.mkt <- p.oli.mkt + scale_y_continuous(limits=c(0,4.5), expand=c(0,0))
 
-p.oli.mkt
-
-
-
