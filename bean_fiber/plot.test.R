@@ -1,10 +1,23 @@
+#create grades dataset
+#attach(fiber)
+fiber<- read.csv("fiber.csv")
+
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, 
+                   mktclass=='GN' | 
+                     mktclass=='pink' | 
+                     mktclass=='pinto' | 
+                     mktclass=='small red' | 
+                     mktclass=='black' | 
+                     mktclass=='small white')
+
 library(ggplot2)
 
-OneWayFit.IDF <- aov(IDF~Entry, data=fiber)
-OneWayFit.SDF <- aov(SDF~Entry, data=fiber)
-OneWayFit.Verb <- aov(Verb~Entry, data=fiber)
-OneWayFit.Raff <- aov(Raff~Entry, data=fiber)
-OneWayFit.Stach <- aov(Stach~Entry, data=fiber)
+OneWayFit.IDF <- aov(IDF~Entry, data=fibersub)
+OneWayFit.SDF <- aov(SDF~Entry, data=fibersub)
+OneWayFit.Verb <- aov(Verb~Entry, data=fibersub)
+OneWayFit.Raff <- aov(Raff~Entry, data=fibersub)
+OneWayFit.Stach <- aov(Stach~Entry, data=fibersub)
 
 #IDF
 p1<-ggplot(OneWayFit.IDF, aes(.fitted, .resid))+geom_point()
@@ -16,7 +29,7 @@ p2<-ggplot(OneWayFit.IDF, aes(sample=.stdresid))+geom_qq()+geom_abline()+xlab("T
 p2
 
 #log transform IDF
-OneWayFit.logIDF <- aov(log(IDF)~Entry, data=fiber)
+OneWayFit.logIDF <- aov(log(IDF)~Entry, data=fibersub)
 
 p1log<-ggplot(OneWayFit.logIDF, aes(.fitted, .resid))+geom_point()
 p1log<-p1log+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -27,7 +40,7 @@ p2log<-ggplot(OneWayFit.logIDF, aes(sample=.stdresid))+geom_qq()+geom_abline()+x
 p2log
 
 #sqrt transform IDF
-OneWayFit.sqrtIDF <- aov(sqrt(IDF)~Entry, data=fiber)
+OneWayFit.sqrtIDF <- aov(sqrt(IDF)~Entry, data=fibersub)
 
 p1sqrt<-ggplot(OneWayFit.sqrtIDF, aes(.fitted, .resid))+geom_point()
 p1sqrt<-p1sqrt+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -48,7 +61,7 @@ p4<-ggplot(OneWayFit.SDF, aes(sample=.stdresid))+geom_qq()+geom_abline()+xlab("T
 p4
 
 #log transform SDF
-OneWayFit.logSDF <- aov(log(SDF)~Entry, data=fiber)
+OneWayFit.logSDF <- aov(log(SDF)~Entry, data=fibersub)
 
 p3log<-ggplot(OneWayFit.logSDF, aes(.fitted, .resid))+geom_point()
 p3log<-p3log+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -59,7 +72,7 @@ p4log<-ggplot(OneWayFit.logSDF, aes(sample=.stdresid))+geom_qq()+geom_abline()+x
 p4log
 
 #sqrt transform SDF
-OneWayFit.sqrtSDF <- aov(sqrt(SDF)~Entry, data=fiber)
+OneWayFit.sqrtSDF <- aov(sqrt(SDF)~Entry, data=fibersub)
 
 p3sqrt<-ggplot(OneWayFit.sqrtSDF, aes(.fitted, .resid))+geom_point()
 p3sqrt<-p3sqrt+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -82,7 +95,7 @@ p6<-ggplot(OneWayFit.Verb, aes(sample=.stdresid))+geom_qq()+geom_abline()+xlab("
 p6
 
 #log transform Verb
-OneWayFit.logVerb <- aov(log(Verb)~Entry, data=fiber)
+OneWayFit.logVerb <- aov(log(Verb)~Entry, data=fibersub)
 
 p5log<-ggplot(OneWayFit.logVerb, aes(.fitted, .resid))+geom_point()
 p5log<-p5log+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -94,7 +107,7 @@ p6log<-ggplot(OneWayFit.logVerb, aes(sample=.stdresid))+geom_qq()+geom_abline()+
 p6log
 
 #sqrt transform Verb
-OneWayFit.sqrtVerb <- aov(sqrt(Verb)~Entry, data=fiber)
+OneWayFit.sqrtVerb <- aov(sqrt(Verb)~Entry, data=fibersub)
 
 p5sqrt<-ggplot(OneWayFit.sqrtVerb, aes(.fitted, .resid))+geom_point()
 p5sqrt<-p5sqrt+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -117,7 +130,7 @@ p8<-ggplot(OneWayFit.Raff, aes(sample=.stdresid))+geom_qq()+geom_abline()+xlab("
 p8
 
 #log transform Raff
-OneWayFit.logRaff <- aov(log(Raff)~Entry, data=fiber)
+OneWayFit.logRaff <- aov(log(Raff)~Entry, data=fibersub)
 
 p7log<-ggplot(OneWayFit.logRaff, aes(.fitted, .resid))+geom_point()
 p7log<-p7log+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -129,7 +142,7 @@ p8log<-ggplot(OneWayFit.logRaff, aes(sample=.stdresid))+geom_qq()+geom_abline()+
 p8log
 
 #sqrt transform Raff
-OneWayFit.sqrtRaff <- aov(sqrt(Raff)~Entry, data=fiber)
+OneWayFit.sqrtRaff <- aov(sqrt(Raff)~Entry, data=fibersub)
 
 p7sqrt<-ggplot(OneWayFit.sqrtRaff, aes(.fitted, .resid))+geom_point()
 p7sqrt<-p7sqrt+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -151,7 +164,7 @@ p10<-ggplot(OneWayFit.Stach, aes(sample=.stdresid))+geom_qq()+geom_abline()+xlab
 p10
 
 #log transform Stach
-OneWayFit.logStach <- aov(log(Stach)~Entry, data=fiber)
+OneWayFit.logStach <- aov(log(Stach)~Entry, data=fibersub)
 
 p9log<-ggplot(OneWayFit.logStach, aes(.fitted, .resid))+geom_point()
 p9log<-p9log+geom_hline(yintercept=0, col="red", linetype="dashed")
@@ -163,7 +176,7 @@ p10log<-ggplot(OneWayFit.logStach, aes(sample=.stdresid))+geom_qq()+geom_abline(
 p10log
 
 #sqrt transform Stach
-OneWayFit.sqrtStach <- aov(sqrt(Stach)~Entry, data=fiber)
+OneWayFit.sqrtStach <- aov(sqrt(Stach)~Entry, data=fibersub)
 
 p9sqrt<-ggplot(OneWayFit.sqrtStach, aes(.fitted, .resid))+geom_point()
 p9sqrt<-p9sqrt+geom_hline(yintercept=0, col="red", linetype="dashed")
