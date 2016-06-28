@@ -2,6 +2,15 @@
 
 fiber<- read.csv("fiber.csv")
 
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fiber <- subset(fiber, 
+                   mktclass=='GN' | 
+                     mktclass=='pink' | 
+                     mktclass=='pinto' | 
+                     mktclass=='small red' | 
+                     mktclass=='black' | 
+                     mktclass=='small white')
+
 OneWayFit <- aov(IDF~mktclass, data=fiber)
 TukeyHSD(OneWayFit)
 library(multcomp)
