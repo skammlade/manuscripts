@@ -42,8 +42,11 @@ p.oli.mkt <- p.oli.mkt + scale_x_discrete(labels=c("Raff" = "Raffinose",
                                                    "Verb" = "Verbascose"), 
                                           expand=c(0.1,0))
 
+#plot labels
 p.oli.mkt <- p.oli.mkt + labs(title="Raffinose Family Oligosaccharide Pathway \n Raffinose - Stachyose - Verbascose", 
                               y="% dry wt.")
+
+p.oli.mkt <- p.oli.mkt + scale_y_continuous(limits=c(0,4.5), expand=c(0,0))
 
 p.oli.mkt
 
