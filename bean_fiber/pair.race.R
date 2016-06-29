@@ -1,58 +1,62 @@
 ##    -   Pairwise Differences
-
+library(multcomp)
 
 fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(IDF~race, data=fiber)
+
+#subset fiber data to remove black mottle, flor de mayo, red mottle, carioca, and tan
+fibersub <- subset(fiber, 
+                   mktclass=='GN' | 
+                     mktclass=='pink' | 
+                     mktclass=='pinto' | 
+                     mktclass=='small red' | 
+                     mktclass=='black' | 
+                     mktclass=='small white')
+
+
+OneWayFit <- aov(IDF~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(SDF~race, data=fiber)
+
+OneWayFit <- aov(SDF~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Raff~race, data=fiber)
+
+OneWayFit <- aov(Raff~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Stach~race, data=fiber)
+
+OneWayFit <- aov(Stach~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(Verb~race, data=fiber)
+
+OneWayFit <- aov(Verb~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(TOligos~race, data=fiber)
+
+OneWayFit <- aov(TOligos~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
 
-fiber<- read.csv("fiber.csv")
-OneWayFit <- aov(TDF~race, data=fiber)
+
+OneWayFit <- aov(TDF~race, data=fibersub)
 TukeyHSD(OneWayFit)
-library(multcomp)
 PairComps <- glht(OneWayFit, linfct=mcp(race="Tukey"))
 summary(PairComps)
 cld(PairComps)
