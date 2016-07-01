@@ -15,6 +15,9 @@ fibersub <- subset(fiber,
 require(ggplot2)
 require(cowplot)
 
+cbPalette<-c("#253494","#2c7fb8","#41b6c4","#a1dab4",  "#bd0026", "#f03b20")
+
+fibersub$mktclass <- factor(fibersub$mktclass, levels=c('GN', 'pink', 'pinto', 'small red', 'black', 'small white'), labels=c('GN', 'pink', 'pinto', 'small red', 'black', 'small white'))
 
 #insoluble dietary fibersub
 p.IDF.mkt <- ggplot(fibersub, 
@@ -36,6 +39,7 @@ p.IDF.mkt <- p.IDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23,
 #labels
 p.IDF.mkt <- p.IDF.mkt + labs(title="Insoluble DF")
 
+p.IDF.mkt <- p.IDF.mkt + scale_fill_manual(values=cbPalette)
 
 
 #SOLUBLE dietary fibersub
@@ -58,7 +62,7 @@ p.SDF.mkt <- p.SDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23,
 #labels
 p.SDF.mkt <- p.SDF.mkt + labs(title="Soluble DF")
 
-
+p.SDF.mkt <- p.SDF.mkt + scale_fill_manual(values=cbPalette)
 
 
 #RAFF
@@ -81,7 +85,7 @@ p.Raff.mkt <- p.Raff.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 2
 #labels
 p.Raff.mkt <- p.Raff.mkt + labs(title="Raffinose")
 
-
+p.Raff.mkt <- p.Raff.mkt + scale_fill_manual(values=cbPalette)
 
 
 
@@ -105,7 +109,7 @@ p.Stach.mkt <- p.Stach.mkt + stat_summary(fun.y = "mean", geom = "point", shape=
 #labels
 p.Stach.mkt <- p.Stach.mkt + labs(title="Stachyose")
 
-
+p.Stach.mkt <- p.Stach.mkt + scale_fill_manual(values=cbPalette)
 
 #VERB
 p.Verb.mkt <- ggplot(fibersub, 
@@ -127,7 +131,7 @@ p.Verb.mkt <- p.Verb.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 2
 #labels
 p.Verb.mkt <- p.Verb.mkt + labs(title="Verbascose")
 
-
+p.Verb.mkt <- p.Verb.mkt + scale_fill_manual(values=cbPalette)
 
 #total oligos
 p.TOligos.mkt <- ggplot(fibersub, 
@@ -149,7 +153,7 @@ p.TOligos.mkt <- p.TOligos.mkt + stat_summary(fun.y = "mean", geom = "point", sh
 #labels
 p.TOligos.mkt <- p.TOligos.mkt + labs(title="Total Oligosaccharides")
 
-
+p.TOligos.mkt <- p.TOligos.mkt + scale_fill_manual(values=cbPalette)
 
 
 #total dietary fibersub
@@ -173,7 +177,9 @@ p.TDF.mkt <- p.TDF.mkt + theme(legend.position="none",
 p.TDF.mkt <- p.TDF.mkt + stat_summary(fun.y = "mean", geom = "point", shape= 23, size= 2, fill= "white")
 
 #labels
-p.TDF.mkt <- p.TDF.mkt + labs(title="Total Dietary fibersub")
+p.TDF.mkt <- p.TDF.mkt + labs(title="Total Dietary Fiber")
+
+p.TDF.mkt <- p.TDF.mkt + scale_fill_manual(values=cbPalette)
 
 #multiple plots
-plot_grid(p.Raff.mkt, p.Stach.mkt, p.Verb.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
+#plot_grid(p.Raff.mkt, p.Stach.mkt, p.Verb.mkt, p.TOligos.mkt, labels = c("A", "B", "C", "D"), ncol = 2)
