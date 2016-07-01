@@ -187,7 +187,7 @@ p.toligos.mkt <- p.toligos.mkt + theme(axis.text.x=element_blank(),
                                                           size=14), 
                                  axis.ticks.x=element_blank(),
                                  legend.text=element_text(size=10), 
-                                 legend.position="center",
+                                 legend.position="none",
                                  plot.margin=unit(c(0.5,0.5,0.5,0.5), "cm"),
                                  strip.text.x=element_text(size=12, face="bold"),
                                  panel.margin.x=unit(0.25, "lines"))
@@ -205,7 +205,7 @@ p.toligos.mkt <- p.toligos.mkt+ labs(y=NULL,
 p.toligos.mkt <- p.toligos.mkt  + guides(fill=guide_legend(title="marketclass"))
 
 #save legend as a grob
-legend <- get_legend(p.toligos.mkt)
+#legend <- get_legend(p.toligos.mkt)
 
 #remove legend from p.toligos
 p.toligos.mkt <- p.toligos.mkt + theme(legend.position="none")
@@ -223,7 +223,7 @@ g.toligos$widths[4] = unit(4, "null")
 g.toligos$widths[7] = unit(2, "null")
 
 
-grid.arrange(g.raff, g.stach, g.verb, g.toligos, legend, ncol=2, nrow = 3, 
-             layout_matrix = rbind(c(1,2),c(3,4), c(5,5)), heights = c(2.5, 2.5, 0.5))
+grid.arrange(g.raff, g.stach, g.verb, g.toligos, ncol=2, nrow = 2, 
+             layout_matrix = rbind(c(1,2),c(3,4)), heights = c(2.5, 2.5))
 
 
