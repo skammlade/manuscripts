@@ -62,60 +62,68 @@ Total Dietary Fiber | Sum of soluble fiber, insoluble fiber, and total oligosacc
 
 Table: Fiber components measured in the study. Faffinose, stachyose, and verbascose are grouped together broadly as total oligosaccharides. These carbohydrates are not digested in the small intestine and are instead passed into the large intestine to be fermented by microflora with the production of gas.
 
-## Results: Entry Rankings
-
-Tables below show the five entries with the greatest and five entries with the lowest values of each fiber component averaged across the two replications including standard deviation (sd), standard error (se) and confindence intervals (ci).
-
-## --  Total Dietary Fiber (TDF) 
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source('summarySE.R')
 source('ranking.R')
 library(knitr)
 ```
 
+## Results: Soluble (SDF) and Insoluble (IDF) Dietary Fiber
+
+## -- Entry Rankings 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.TDF, caption="Five entries with greatest TDF content.")
-kable(tail.TDF, caption="Five entries with lowest TDF content.")
+kable(data.table(rank.SDF, rank.IDF), caption="Five entries with largest and smallest IDF and SDF content.")
 ```
 
-\pagebreak
+## Results: Raffinose Pathway of Oligosaccharides
 
-## --  Raffinose (Raff)
+## -- Entry Rankings
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.Raff, caption="Five entries with greatest Raff content.")
-kable(tail.Raff, caption="Five entries with lowest Raff content.")
+kable(data.table(rank.Raff, rank.Stach, rank.Verb, rank.TOligos), caption="Five entries with greatest oligosaccharide content from raffinose pathway.")
 ```
 
-## --  Stachyose (Stach)
+## Results: Total Dietary Fiber
+
+## --  Entry Rankings
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.Stach, caption="Five entries with greatest Stach content.")
-kable(tail.Stach, caption="Five entries with lowest Stach content.")
+kable(rank.TDF, caption="Five entries with greatest and lowest TDF content.")
 ```
 
-## --  Verbascose (Verb)
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.Verb, caption="Five entries with greatest Verb content.")
-kable(tail.Verb, caption="Five entries with lowest Verb content.")
+## Results: GxE
+
+## --  Soluble (SDF) and Insoluble (IDF) Fiber
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.SDF.origin, p.gxe.SDF, p.SDF.origin, p.gxe.SDF, labels = c("A", "B", "C", "D"), ncol = 2, align="hv")
 ```
 
-## --  Total Oligosachharides (TOligos)
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.TOligos, caption="Five entries with greatest TOligos content.")
-kable(tail.TOligos, caption="Five entries with lowest TOligos content.")
+## --  Raffinose Oligosaccharide Pathway
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.Raff.origin, p.gxe.Raff, p.Stach.origin, p.gxe.Stach, p.Verb.origin, p.gxe.Verb, p.TOligos.origin, p.gxe.TOligos, labels = c("A", "B", "C", "D", "E", "F", "G", "H"), ncol = 2, align="hv")
 ```
 
-## -- Insoluble Dietary Fiber (IDF) 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.IDF, caption="Five entries with greatest IDF content.")
-kable(tail.IDF, caption="Five entries with lowest IDF content.")
+## --  Total Dietary Fiber (TDF)
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.SDF.origin, p.gxe.SDF, labels = c("A", "B"), ncol = 2, align="hv")
 ```
 
-## --  Soluble Dietary Fiber (SDF)
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-kable(head.SDF, caption="Five entries with greatest SDF content.")
-kable(tail.SDF, caption="Five entries with lowest SDF content.")
-```
+
+
+
+
+
+
+
+
+
 
 ## Results: Marketclass
 
@@ -368,6 +376,8 @@ summary(PairComps)
 cld(PairComps)
 ```
 
+\pagebreak
+
 ## GxE Analysis
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
@@ -389,14 +399,78 @@ gxe.fibersub <- subset(fiber, mktclass=='GN' | mktclass=='pink' | mktclass=='pin
 | | black |   `r sum(gxe.fibersub$mktclass=="black", na.rm=TRUE)/4` |
 | | small white     |  `r sum(gxe.fibersub$mktclass=="small white", na.rm=TRUE)/4` |
 
-## -- Lineplot
+##  -- ANOVA
 
-```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Soluble and (B) insoluble dietary fiber in common bean by race,"}
-##Boxplots by race: Soluble and Insoluble DF
-source('lineplot.gxe.mkt.R')
-plot_grid(p.gxe.mkt.IDF, p.gxe.mkt.SDF, labels = c("A", "B"), ncol = 2, align="w")
+ANOVA was conducted treating rep as random with rep nested within origin (rep = block).
+
+\pagebreak
+
+## -- Raffinose
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.Raff.origin, p.gxe.Raff, labels = c("A", "B"), ncol = 2, align="h")
 ```
 
 
-##  -- ANOVA
+\pagebreak
 
+## -- Stachyose
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.Stach.origin, p.gxe.Stach, labels = c("A", "B"), ncol = 2, align="h")
+```
+
+
+\pagebreak
+
+## -- Verbascose
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.Verb.origin, p.gxe.Verb, labels = c("A", "B"), ncol = 2, align="h")
+```
+
+
+## -- Total oligosachharides
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.TOligos.origin, p.gxe.TOligos, labels = c("A", "B"), ncol = 2, align="h")
+```
+
+\pagebreak
+
+## -- Insoluble Dietary Fiber
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.IDF.origin, p.gxe.IDF, labels = c("A", "B"), ncol = 2, align="h")
+```
+
+\pagebreak
+
+## -- Soluble Dietary Fiber
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.SDF.origin, p.gxe.SDF, labels = c("A", "B"), ncol = 2, align="h")
+```
+
+
+\pagebreak
+
+## -- Total Dietary Fiber
+
+```{r fig.width = 8, fig.height=4, fig.align='center', echo=FALSE, message=FALSE, warning=FALSE, fig.cap="(A) Boxplot of Entry means by origin and (B) lineplot of entry means by origin showing gxe."}
+source('lineplot.gxe.R')
+source('boxplot.gxe.origin.R')
+plot_grid(p.TDF.origin, p.gxe.TDF, labels = c("A", "B"), ncol = 2, align="h")
+```
