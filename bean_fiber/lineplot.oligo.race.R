@@ -17,7 +17,7 @@ summ.df <- summarySE(fibersub.oli, measurevar="value", groupvars=c("race","ftype
 #oligosaccharides by mktclass
 p.oli.race <- ggplot(summ.df, aes(x=ftype, y=value, colour=race))
 
-p.oli.race <- p.oli.race  + geom_line(aes(group=race)) + geom_point() + geom_errorbar(aes(ymin=value-se, ymax=value+se), width=.1)
+p.oli.race <- p.oli.race  + geom_line(aes(group=race)) + geom_point() 
 
 p.oli.race <- p.oli.race + theme(axis.title.y=element_text(margin=margin(0,17,0,0), 
                                                          family="Helvetica", 
@@ -43,7 +43,7 @@ p.oli.race <- p.oli.race + scale_x_discrete(labels=c("Raff" = "Raffinose",
                                           expand=c(0.1,0))
 
 #plot labels
-p.oli.race <- p.oli.race + labs(title="Raffinose Family Oligosaccharide Pathway \n Raffinose - Stachyose - Verbascose", 
+p.oli.race <- p.oli.race + labs(title=NULL, 
                               y="% dry wt.")
 
 p.oli.race <- p.oli.race + scale_y_continuous(limits=c(0,4.5), expand=c(0,0))
